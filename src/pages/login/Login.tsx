@@ -14,16 +14,16 @@ import { toast } from '../../components/toast/Toast';
 import { loginUser } from '../../config/Firebase';
 
 const Login: React.FC = () => {
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   async function login() {
-    const response: any = await loginUser(username, password);
+    const response: any = await loginUser(email, password);
 
-    if (!response) {
-      toast('Login failed!', 'warning');
+    if (response) {
+      // Go to dashboard...
     } else {
-      toast('Login success!', 'success');
+      
     }
   }
 
@@ -41,8 +41,8 @@ const Login: React.FC = () => {
           </IonToolbar>
         </IonHeader>
         <IonContent>
-          <IonInput placeholder="Username" type="email"
-                    onIonChange={(e: any) => setUsername(e.target.value)}></IonInput>
+          <IonInput placeholder="Email" type="email"
+                    onIonChange={(e: any) => setEmail(e.target.value)}></IonInput>
           <IonInput placeholder="Password" type="password"
                     onIonChange={(e: any) => setPassword(e.target.value)}></IonInput>
           <IonButton color="light" expand="full" onClick={login} >Login</IonButton>
