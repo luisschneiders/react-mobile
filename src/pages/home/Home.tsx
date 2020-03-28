@@ -21,9 +21,9 @@ const Home: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent class="ion-text-center">
-        <IonHeader collapse='condense'>
+        <IonHeader collapse="condense">
           <IonToolbar>
-            <IonTitle size='large'>Welcome</IonTitle>
+            <IonTitle size="large">Welcome</IonTitle>
           </IonToolbar>
         </IonHeader>
         <IonContent>
@@ -31,19 +31,19 @@ const Home: React.FC = () => {
           <IonRow>
             <IonCol>
               <div>
-                <IonButton routerLink='/login' expand='full' color='light'>Login</IonButton>
+                <IonButton routerLink="/login" expand="full" color="light">Login</IonButton>
               </div>
             </IonCol>
           </IonRow>
           <IonRow>
             <IonCol>
-              <div>or</div>
+              <span>or</span>
             </IonCol>
           </IonRow>
           <IonRow>
             <IonCol>
               <div>
-                <IonButton routerLink='/register' expand='full' color='medium'>Register</IonButton>
+                <IonButton routerLink="/register" expand="full" color="medium">Register</IonButton>
               </div>
             </IonCol>
           </IonRow>
