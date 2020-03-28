@@ -18,6 +18,7 @@ import {
 import Tab1 from './pages/tab1/Tab1';
 import Tab2 from './pages/tab2/Tab2';
 import Tab3 from './pages/tab3/Tab3';
+import Home from './pages/home/Home';
 import Login from './pages/login/Login';
 import Register from './pages/register/Register';
 
@@ -45,12 +46,13 @@ const App: React.FC = () => (
         <IonReactRouter>
           <IonTabs>
             <IonRouterOutlet>
+              <Route path='/home' component={Home} exact={true} />
               <Route path='/login' component={Login} exact={true} />
               <Route path='/register' component={Register} exact={true} />
               <Route path='/page1' component={Tab1} exact={true} />
               <Route path='/page2' component={Tab2} exact={true} />
               <Route path='/settings' component={Tab3} />
-              <Route path='/' render={() => <Redirect to='/login' />} exact={true} />
+              <Route path='/' render={() => <Redirect to='/home' />} exact={true} />
             </IonRouterOutlet>
             <IonTabBar slot='bottom'>
               <IonTabButton tab='tab1' href='/page1'>
