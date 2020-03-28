@@ -10,15 +10,21 @@ import {
 } from '@ionic/react';
 import './Login.css';
 import { Link } from 'react-router-dom';
-import { loginUser } from '../../firebaseConfig';
+import { toast } from '../../components/toast/Toast';
+import { loginUser } from '../../config/Firebase';
 
 const Login: React.FC = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
   async function login() {
-    const response: any = await loginUser(username, password)
-    console.log(`${response ? 'Login success!' : 'Login failed!'}`);
+    const response: any = await loginUser(username, password);
+
+    if (!response) {
+      toast('Login failed!', 'warning');
+    } else {
+      toast('Login success!', 'success');
+    }
   }
 
   return (
