@@ -4,24 +4,51 @@ import {
   IonHeader,
   IonPage,
   IonTitle,
-  IonToolbar
+  IonToolbar,
+  IonButton,
+  IonGrid,
+  IonRow,
+  IonCol
 } from '@ionic/react';
 import './Home.css';
 
 const Home: React.FC = () => {
   return (
     <IonPage>
-      <IonHeader>
+      <IonHeader class="ion-text-center">
         <IonToolbar>
           <IonTitle>Welcome</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent>
-        <IonHeader collapse="condense">
+      <IonContent class="ion-text-center">
+        <IonHeader collapse='condense'>
           <IonToolbar>
-            <IonTitle size="large">Welcome</IonTitle>
+            <IonTitle size='large'>Welcome</IonTitle>
           </IonToolbar>
         </IonHeader>
+        <IonContent>
+        <IonGrid>
+          <IonRow>
+            <IonCol>
+              <div>
+                <IonButton routerLink='/login' expand='full' color='light'>Login</IonButton>
+              </div>
+            </IonCol>
+          </IonRow>
+          <IonRow>
+            <IonCol>
+              <div>or</div>
+            </IonCol>
+          </IonRow>
+          <IonRow>
+            <IonCol>
+              <div>
+                <IonButton routerLink='/register' expand='full' color='medium'>Register</IonButton>
+              </div>
+            </IonCol>
+          </IonRow>
+        </IonGrid>
+        </IonContent>
       </IonContent>
     </IonPage>
   );
