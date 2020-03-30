@@ -1,16 +1,17 @@
 import * as firebase from 'firebase';
 import { toast } from '../components/toast/Toast';
 import { Firebase } from '../credentials/Firebase';
+import { ToastStatus } from '../components/toast/ToastStatus';
 
 firebase.initializeApp(Firebase);
 
 export async function loginUser(email: string, password: string) {
   try {
     const response: any = await firebase.auth().signInWithEmailAndPassword(email, password);
-    toast('Login success!', 'success');
+    toast('Welcome back!', ToastStatus.DEFAULT);
     return response;
   } catch(error) {
-    toast(error.message, 'danger');
+    toast(error.message, ToastStatus.ERROR, 4000);
     return error;
   }
 }
@@ -18,10 +19,10 @@ export async function loginUser(email: string, password: string) {
 export async function registerUser(email: string, password: string) {
   try {
     const response: any = await firebase.auth().createUserWithEmailAndPassword(email, password);
-    toast('Welcome!', 'success');
+    toast('Successfully registered!', ToastStatus.DEFAULT);
     return response;
   } catch(error) {
-    toast(error.message, 'danger');
+    toast(error.message, ToastStatus.ERROR, 4000);
     return error;
   }
 }

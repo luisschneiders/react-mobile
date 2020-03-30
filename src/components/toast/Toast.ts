@@ -1,4 +1,6 @@
-export function toast(message: string, color: string = 'light', duration: number = 2000) {
+import { ToastStatus } from "./ToastStatus";
+
+export function toast(message: string, color: string = ToastStatus.DEFAULT, duration: number = 2000) {
   const toast: any = document.createElement('ion-toast');
   toast.message = message;
   toast.duration = duration;
