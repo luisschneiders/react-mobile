@@ -20,13 +20,12 @@ const Home: React.FC = () => {
           <IonTitle>Welcome</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent class="ion-padding-horizontal ion-text-center">
+      <IonContent className="ion-padding ion-text-center">
         <IonHeader collapse="condense">
           <IonToolbar>
             <IonTitle size="large">Welcome</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <IonContent>
         <IonGrid>
           <IonRow>
             <IonCol>
@@ -48,7 +47,6 @@ const Home: React.FC = () => {
             </IonCol>
           </IonRow>
         </IonGrid>
-        </IonContent>
       </IonContent>
     </IonPage>
   );
