@@ -34,8 +34,7 @@ const Register: React.FC = () => {
     setBusy(false);
     if (response) {
       // Go to dashboard...
-    } else {
-      
+      window.location.href = '/dashboard';
     }
   }
 

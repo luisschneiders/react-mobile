@@ -7,7 +7,6 @@ import {
   IonToolbar,
   IonInput,
   IonButton,
-  IonSpinner,
   IonLoading
 } from '@ionic/react';
 import './Login.css';
@@ -32,8 +31,7 @@ const Login: React.FC = () => {
     setBusy(false);
     if (response) {
       // Go to dashboard...
-    } else {
-      
+      window.location.href = '/dashboard';
     }
 
   }
@@ -46,20 +44,19 @@ const Login: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonLoading message="Please wait..." duration={0} isOpen={busy}></IonLoading>
-      <IonContent class="ion-padding-horizontal">
+      <IonContent className="ion-padding">
         <IonHeader collapse="condense">
           <IonToolbar>
             <IonTitle size="large">Login</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <IonContent>
-          <IonInput placeholder="Email" type="email"
-                    onIonChange={(e: any) => setEmail(e.target.value)}></IonInput>
-          <IonInput placeholder="Password" type="password"
-                    onIonChange={(e: any) => setPassword(e.target.value)}></IonInput>
-          <IonButton color="light" expand="full" onClick={login} >Login</IonButton>
-          <span>Don't have an account yet? <Link to="/register">Register here</Link></span>
-        </IonContent>
+
+        <IonInput placeholder="Email" type="email"
+                  onIonChange={(e: any) => setEmail(e.target.value)}></IonInput>
+        <IonInput placeholder="Password" type="password"
+                  onIonChange={(e: any) => setPassword(e.target.value)}></IonInput>
+        <IonButton color="light" expand="full" onClick={login} >Login</IonButton>
+        <span>Don't have an account yet? <Link to="/register">Register here</Link></span>
       </IonContent>
     </IonPage>
   );
