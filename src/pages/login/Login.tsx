@@ -17,9 +17,9 @@ import { loginUser } from '../../config/Firebase';
 import { ToastStatus } from '../../components/toast/ToastStatus';
 
 const Login: React.FC = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [busy , setBusy] = useState(false);
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [busy , setBusy] = useState<boolean>(false);
 
   async function login() {
     if (email.trim() === '' || password.trim() === '') {

@@ -16,10 +16,10 @@ import { registerUser } from '../../config/Firebase';
 import { ToastStatus } from '../../components/toast/ToastStatus';
 
 const Register: React.FC = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [busy , setBusy] = useState(false);
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [confirmPassword, setConfirmPassword] = useState<string>('');
+  const [busy , setBusy] = useState<boolean>(false);
   
   async function register() {
     if (password !== confirmPassword) {
