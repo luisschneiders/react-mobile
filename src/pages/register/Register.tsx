@@ -23,18 +23,20 @@ const Register: React.FC = () => {
   
   async function register() {
     if (password !== confirmPassword) {
-      return toast(`Passwords should match!`, ToastStatus.WARNING);
+      return toast('Passwords should match!', ToastStatus.WARNING);
     }
 
     if (email.trim() === '' || password.trim() === '') {
-      return toast(`Email and password are required!`, ToastStatus.WARNING);
+      return toast('Email and password are required!', ToastStatus.WARNING);
     }
+
     setBusy(true);
     const response: any = await registerUser(email, password);
     setBusy(false);
+
     if (response) {
       // Go to dashboard...
-      window.location.href = '/dashboard';
+      window.location.href = '/page1';
     }
   }
 

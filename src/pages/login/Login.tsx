@@ -22,16 +22,16 @@ const Login: React.FC = () => {
 
   async function login() {
     if (email.trim() === '' || password.trim() === '') {
-      return toast(`Email and password are required!`, ToastStatus.DEFAULT);
+      return toast('Email and password are required!', ToastStatus.DEFAULT);
     }
+
     setBusy(true);
-
     const response: any = await loginUser(email, password);
-
     setBusy(false);
+
     if (response) {
       // Go to dashboard...
-      window.location.href = '/dashboard';
+      window.location.href = '/page1';
     }
 
   }
