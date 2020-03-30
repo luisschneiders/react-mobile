@@ -47,24 +47,24 @@ const Register: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonLoading message="Please wait..." duration={0} isOpen={busy}></IonLoading>
-      <IonContent class="ion-padding-horizontal">
+      <IonContent className="ion-padding">
         <IonHeader collapse="condense">
           <IonToolbar>
             <IonTitle size="large">Register</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <IonContent>
-          <IonInput type="email" placeholder="Email"
-                    onIonChange={(e: any) => setEmail(e.target.value)}></IonInput>
 
-          <IonInput type="password" placeholder="Password"
-                    onIonChange={(e: any) => setPassword(e.target.value)}></IonInput>
+        <IonInput type="email" placeholder="Email"
+                  onIonChange={(e: any) => setEmail(e.target.value)}></IonInput>
 
-          <IonInput type="password" placeholder="Confirm Password"
-                    onIonChange={(e: any) => setConfirmPassword(e.target.value)}></IonInput>
-          <IonButton color="medium" expand="full" onClick={register} >Register</IonButton>
-          <span>Already have an account? <Link to="/login">Login</Link></span>
-        </IonContent>
+        <IonInput type="password" placeholder="Password"
+                  onIonChange={(e: any) => setPassword(e.target.value)}></IonInput>
+
+        <IonInput type="password" placeholder="Confirm Password"
+                  onIonChange={(e: any) => setConfirmPassword(e.target.value)}></IonInput>
+        <IonButton color="medium" expand="full" onClick={register} >Register</IonButton>
+        <span>Already have an account? <Link to="/login">Login</Link></span>
+
       </IonContent>
     </IonPage>
   );
