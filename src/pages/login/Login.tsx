@@ -12,12 +12,16 @@ import './Login.css';
 import { Link } from 'react-router-dom';
 import { toast } from '../../components/toast/Toast';
 import { loginUser } from '../../config/Firebase';
+import { ToastStatus } from '../../components/toast/ToastStatus';
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   async function login() {
+    if (email.trim() === '' || password.trim() === '') {
+      return toast(`Email and password are required!`, ToastStatus.DEFAULT);
+    }
     const response: any = await loginUser(email, password);
 
     if (response) {
@@ -29,12 +33,12 @@ const Login: React.FC = () => {
 
   return (
     <IonPage>
-      <IonHeader class="ion-text-center">
+      <IonHeader class="ion-padding-horizontal ion-text-center">
         <IonToolbar>
           <IonTitle>Login</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent>
+      <IonContent class="ion-padding-horizontal">
         <IonHeader collapse="condense">
           <IonToolbar>
             <IonTitle size="large">Login</IonTitle>

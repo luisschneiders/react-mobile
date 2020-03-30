@@ -12,6 +12,7 @@ import './Register.css';
 import { Link } from 'react-router-dom';
 import { toast } from '../../components/toast/Toast';
 import { registerUser } from '../../config/Firebase';
+import { ToastStatus } from '../../components/toast/ToastStatus';
 
 const Register: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -20,11 +21,11 @@ const Register: React.FC = () => {
   
   async function register() {
     if (password !== confirmPassword) {
-      return toast(`Passwords should match!`, 'warning');
+      return toast(`Passwords should match!`, ToastStatus.WARNING);
     }
 
     if (email.trim() === '' || password.trim() === '') {
-      return toast(`Email and password are required!`, 'warning');
+      return toast(`Email and password are required!`, ToastStatus.WARNING);
     }
 
     const response: any = await registerUser(email, password);
@@ -37,12 +38,12 @@ const Register: React.FC = () => {
 
   return (
     <IonPage>
-      <IonHeader class="ion-text-center">
+      <IonHeader class="ion-padding-horizontal ion-text-center">
         <IonToolbar>
           <IonTitle>Register</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent>
+      <IonContent class="ion-padding-horizontal">
         <IonHeader collapse="condense">
           <IonToolbar>
             <IonTitle size="large">Register</IonTitle>

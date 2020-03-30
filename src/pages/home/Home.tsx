@@ -15,12 +15,12 @@ import './Home.css';
 const Home: React.FC = () => {
   return (
     <IonPage>
-      <IonHeader class="ion-text-center">
+      <IonHeader class="ion-padding-horizontal ion-text-center">
         <IonToolbar>
           <IonTitle>Welcome</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent class="ion-text-center">
+      <IonContent class="ion-padding-horizontal ion-text-center">
         <IonHeader collapse="condense">
           <IonToolbar>
             <IonTitle size="large">Welcome</IonTitle>
