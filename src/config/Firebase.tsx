@@ -26,3 +26,17 @@ export async function registerUser(email: string, password: string) {
     return error;
   }
 }
+
+export function getCurrentUser() {
+  return new Promise((resolve, reject) => {
+    const unsubscribe: any = firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        resolve(user);
+      } else {
+        resolve(null);
+      }
+      unsubscribe();
+    });
+  });
+
+}
