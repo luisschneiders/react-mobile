@@ -6,7 +6,8 @@ import {
   IonTitle,
   IonToolbar,
   IonInput,
-  IonButton
+  IonButton,
+  IonLoading
 } from '@ionic/react';
 import './Register.css';
 import { Link } from 'react-router-dom';
@@ -18,6 +19,7 @@ const Register: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [busy , setBusy] = useState(false);
   
   async function register() {
     if (password !== confirmPassword) {
@@ -27,8 +29,9 @@ const Register: React.FC = () => {
     if (email.trim() === '' || password.trim() === '') {
       return toast(`Email and password are required!`, ToastStatus.WARNING);
     }
-
+    setBusy(true);
     const response: any = await registerUser(email, password);
+    setBusy(false);
     if (response) {
       // Go to dashboard...
     } else {
@@ -43,6 +46,7 @@ const Register: React.FC = () => {
           <IonTitle>Register</IonTitle>
         </IonToolbar>
       </IonHeader>
+      <IonLoading message="Please wait..." duration={0} isOpen={busy}></IonLoading>
       <IonContent class="ion-padding-horizontal">
         <IonHeader collapse="condense">
           <IonToolbar>
