@@ -5,14 +5,14 @@ import {
   albumsOutline
 } from "ionicons/icons";
 
-export interface ITab {
+export interface AppTab {
   url: string;
   label: string;
-  icon: any
+  icon: string;
 }
 
 export function appTabs() {
-  const authenticated: ITab[] = [
+  const authenticated: AppTab[] = [
     {
       url: '/page1',
       label: 'Page 1',
@@ -30,7 +30,7 @@ export function appTabs() {
     },
   ];
 
-  const unauthenticated: ITab[] = [
+  const unauthenticated: AppTab[] = [
     {
       url: '/home',
       label: 'Home',
