@@ -15,7 +15,7 @@ import './Home.scss';
 const Home: React.FC = () => {
   return (
     <IonPage>
-      <IonHeader class="ion-padding-horizontal ion-text-center">
+      <IonHeader class="ion-text-center">
         <IonToolbar>
           <IonTitle>Welcome</IonTitle>
         </IonToolbar>

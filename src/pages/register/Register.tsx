@@ -42,7 +42,7 @@ const Register: React.FC = () => {
 
   return (
     <IonPage>
-      <IonHeader class="ion-padding-horizontal ion-text-center">
+      <IonHeader class="ion-text-center">
         <IonToolbar>
           <IonTitle>Register</IonTitle>
         </IonToolbar>
