@@ -12,7 +12,7 @@ export async function loginUser(email: string, password: string) {
     return response;
   } catch(error) {
     toast(error.message, ToastStatus.ERROR, 4000);
-    return error;
+    return false;
   }
 }
 
@@ -23,7 +23,7 @@ export async function registerUser(email: string, password: string) {
     return response;
   } catch(error) {
     toast(error.message, ToastStatus.ERROR, 4000);
-    return error;
+    return false;
   }
 }
 
