@@ -7,22 +7,37 @@ import {
   IonToolbar,
   IonInput,
   IonButton,
-  IonLoading
+  IonLoading,
+  IonList,
+  IonItem,
+  IonLabel,
+  IonRow,
+  IonCol
 } from '@ionic/react';
 import './Login.scss';
-import { Link } from 'react-router-dom';
+import { RouteComponentProps } from 'react-router-dom';
 import { toast } from '../../components/toast/Toast';
 import { loginUser } from '../../config/Firebase';
 import { ToastStatus } from '../../components/toast/ToastStatus';
+import { setIsLoggedIn } from '../../data/user/user.actions';
+import { connect } from '../../data/connect';
 
-const Login: React.FC = () => {
+interface OwnProps extends RouteComponentProps {}
+interface DispatchProps {
+  setIsLoggedIn: typeof setIsLoggedIn;
+}
+interface LoginProps extends OwnProps,  DispatchProps { }
+
+const Login: React.FC<LoginProps> = ({setIsLoggedIn, history}) => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  const [busy , setBusy] = useState<boolean>(false);
+  const [busy, setBusy] = useState<boolean>(false);
 
-  async function login() {
+  const login = async (e: React.FormEvent) => {
+    e.preventDefault();
+
     if (email.trim() === '' || password.trim() === '') {
-      return toast('Email and password are required!', ToastStatus.DEFAULT);
+      return toast('Email and password are required!', ToastStatus.WARNING);
     }
 
     setBusy(true);
@@ -30,36 +45,57 @@ const Login: React.FC = () => {
     setBusy(false);
 
     if (response) {
+      await setIsLoggedIn(true);
       // Go to dashboard...
       window.location.href = '/page1';
     }
-
   }
 
   return (
-    <IonPage>
-      <IonHeader class="ion-padding-horizontal ion-text-center">
+    <IonPage id="login-page">
+      <IonHeader class="ion-text-center">
         <IonToolbar>
           <IonTitle>Login</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonLoading message="Please wait..." duration={0} isOpen={busy}></IonLoading>
       <IonContent className="ion-padding">
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Login</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-
-        <IonInput placeholder="Email" type="email"
-                  onIonChange={(e: any) => setEmail(e.target.value)}></IonInput>
-        <IonInput placeholder="Password" type="password"
-                  onIonChange={(e: any) => setPassword(e.target.value)}></IonInput>
-        <IonButton color="light" expand="full" onClick={login} >Login</IonButton>
-        <span>Don't have an account yet? <Link to="/register">Register here</Link></span>
+        <div className="login-logo">
+          <img src="assets/img/appicon.svg" alt="Login" />
+        </div>
+        <form noValidate onSubmit={login}>
+          <IonList>
+            <IonItem>
+              <IonLabel position="stacked" color="primary">Email</IonLabel>
+              <IonInput name="email" type="email"
+                        value={email} spellCheck={false} autocapitalize="off"
+                        onIonChange={(e: any) => setEmail(e.detail.value!)}
+                        required>
+              </IonInput>
+            </IonItem>
+            <IonItem>
+              <IonLabel position="stacked" color="primary">Password</IonLabel>
+              <IonInput name="password" type="password" value={password} onIonChange={(e: any) => setPassword(e.detail.value!)} required>
+              </IonInput>
+            </IonItem>
+          </IonList>
+          <IonRow>
+            <IonCol>
+              <IonButton type="submit" fill="outline" color="dark" expand="block">Login</IonButton>
+            </IonCol>
+            <IonCol>
+              <IonButton routerLink="/register" fill="solid" expand="block">Signup</IonButton>
+            </IonCol>
+          </IonRow>
+        </form>
       </IonContent>
     </IonPage>
   );
 };
 
-export default Login;
+export default connect<OwnProps, {}, DispatchProps>({
+  mapDispatchToProps: {
+    setIsLoggedIn
+  },
+  component: Login
+});
