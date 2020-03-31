@@ -18,21 +18,25 @@ import Register from "../pages/register/Register";
 import Tab1 from "../pages/tab1/Tab1";
 import Tab2 from "../pages/tab2/Tab2";
 import Tab3 from "../pages/tab3/Tab3";
-import { appTabs, ITab } from "./AppTabs";
+import { appTabs, AppTab } from "./AppTabs";
 
 interface ContainerProps {
   isAuthenticated: boolean;
 }
 
 const AppRouting: React.FC<ContainerProps> = ({isAuthenticated}) => {
-  let tabs: ITab[] = [];
 
-  if (isAuthenticated) {
-    tabs = appTabs().authenticated;
-  } else {
-    tabs = appTabs().unauthenticated;
+  function renderTabItems(tabs: AppTab[]) {
+    return tabs
+      .filter(route => !!route.url)
+      .map((tab, index) => (
+        <IonTabButton tab={`tab${index+1}`} key={index} href={tab.url}>
+          <IonIcon icon={tab.icon} />
+          <IonLabel>{tab.label}</IonLabel>
+        </IonTabButton>
+      ));
   }
-  
+
   return (
     <IonReactRouter>
     <IonTabs>
@@ -48,18 +52,7 @@ const AppRouting: React.FC<ContainerProps> = ({isAuthenticated}) => {
         <Route path='/' render={() => <Redirect to='/home' />} exact={true} />
       </IonRouterOutlet>
       <IonTabBar slot='bottom'>
-        <IonTabButton tab='tab1' href={tabs[0].url}>
-          <IonIcon icon={tabs[0].icon} />
-          <IonLabel>{tabs[0].label}</IonLabel>
-        </IonTabButton>
-        <IonTabButton tab='tab2' href={tabs[1].url}>
-          <IonIcon icon={tabs[1].icon} />
-          <IonLabel>{tabs[1].label}</IonLabel>
-        </IonTabButton>
-        <IonTabButton tab='tab3' href={tabs[2].url}>
-          <IonIcon icon={tabs[2].icon} />
-          <IonLabel>{tabs[2].label}</IonLabel>
-        </IonTabButton>
+        {isAuthenticated ? renderTabItems(appTabs().authenticated) : renderTabItems(appTabs().unauthenticated)}
       </IonTabBar>
     </IonTabs>
   </IonReactRouter>
