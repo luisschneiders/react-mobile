@@ -9,7 +9,7 @@ import {
   IonButton,
   IonLoading
 } from '@ionic/react';
-import './Register.css';
+import './Register.scss';
 import { Link } from 'react-router-dom';
 import { toast } from '../../components/toast/Toast';
 import { registerUser } from '../../config/Firebase';
