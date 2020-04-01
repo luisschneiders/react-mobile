@@ -45,8 +45,8 @@ const Login: React.FC<LoginProps> = ({setIsLoggedIn, history}) => {
     setBusy(false);
 
     if (response) {
-      await setIsLoggedIn(true);
       // Go to dashboard...
+      await setIsLoggedIn(true);
       window.location.href = '/page1';
     }
   }
@@ -84,7 +84,7 @@ const Login: React.FC<LoginProps> = ({setIsLoggedIn, history}) => {
               <IonButton type="submit" fill="outline" color="dark" expand="block">Login</IonButton>
             </IonCol>
             <IonCol>
-              <IonButton routerLink="/register" fill="solid" expand="block">Signup</IonButton>
+              <IonButton routerLink="/register" fill="solid" expand="block">Register</IonButton>
             </IonCol>
           </IonRow>
         </form>

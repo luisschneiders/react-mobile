@@ -7,21 +7,35 @@ import {
   IonToolbar,
   IonInput,
   IonButton,
-  IonLoading
+  IonLoading,
+  IonList,
+  IonItem,
+  IonLabel,
+  IonRow,
+  IonCol
 } from '@ionic/react';
-import './Register.scss';
-import { Link } from 'react-router-dom';
+import { Link, RouteComponentProps } from 'react-router-dom';
 import { toast } from '../../components/toast/Toast';
 import { registerUser } from '../../config/Firebase';
 import { ToastStatus } from '../../components/toast/ToastStatus';
+import { setIsLoggedIn } from '../../data/user/user.actions';
+import { connect } from '../../data/connect';
 
-const Register: React.FC = () => {
+interface OwnProps extends RouteComponentProps {}
+interface DispatchProps {
+  setIsLoggedIn: typeof setIsLoggedIn;
+}
+interface RegisterProps extends OwnProps,  DispatchProps { }
+
+const Register: React.FC<RegisterProps> = ({setIsLoggedIn, history}) => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [confirmPassword, setConfirmPassword] = useState<string>('');
   const [busy , setBusy] = useState<boolean>(false);
   
-  async function register() {
+  const register = async (e: React.FormEvent) => {
+    e.preventDefault();
+
     if (password !== confirmPassword) {
       return toast('Passwords should match!', ToastStatus.WARNING);
     }
@@ -36,12 +50,13 @@ const Register: React.FC = () => {
 
     if (response) {
       // Go to dashboard...
+      await setIsLoggedIn(true);
       window.location.href = '/page1';
     }
   }
 
   return (
-    <IonPage>
+    <IonPage id="register-page">
       <IonHeader class="ion-text-center">
         <IonToolbar>
           <IonTitle>Register</IonTitle>
@@ -49,26 +64,52 @@ const Register: React.FC = () => {
       </IonHeader>
       <IonLoading message="Please wait..." duration={0} isOpen={busy}></IonLoading>
       <IonContent className="ion-padding">
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Register</IonTitle>
-          </IonToolbar>
-        </IonHeader>
+        <div className="login-logo">
+          <img src="assets/img/appicon.svg" alt="Login" />
+        </div>
+        <form noValidate onSubmit={register}>
+          <IonList>
+            <IonItem>
+              <IonLabel position="stacked" color="primary">Email</IonLabel>
+              <IonInput name="email" type="email"
+                        value={email} spellCheck={false} autocapitalize="off"
+                        onIonChange={(e: any) => setEmail(e.detail.value!)}
+                        required>
+              </IonInput>
+            </IonItem>
+            <IonItem>
+              <IonLabel position="stacked" color="primary">Password</IonLabel>
+              <IonInput name="password" type="password"
+                        value={password}
+                        onIonChange={(e: any) => setPassword(e.detail.value!)} required>
+              </IonInput>
+            </IonItem>
+            <IonItem>
+              <IonLabel position="stacked" color="primary">Confirm Password</IonLabel>
+              <IonInput name="password" type="password"
+                        value={confirmPassword}
+                        onIonChange={(e: any) => setConfirmPassword(e.detail.value!)} required>
+              </IonInput>
+            </IonItem>
+          </IonList>
 
-        <IonInput type="email" placeholder="Email"
-                  onIonChange={(e: any) => setEmail(e.target.value)}></IonInput>
-
-        <IonInput type="password" placeholder="Password"
-                  onIonChange={(e: any) => setPassword(e.target.value)}></IonInput>
-
-        <IonInput type="password" placeholder="Confirm Password"
-                  onIonChange={(e: any) => setConfirmPassword(e.target.value)}></IonInput>
-        <IonButton color="medium" expand="full" onClick={register} >Register</IonButton>
-        <span>Already have an account? <Link to="/login">Login</Link></span>
-
+          <IonRow>
+            <IonCol>
+              <IonButton type="submit" fill="outline" color="dark" expand="block">Register</IonButton>
+            </IonCol>
+            <IonCol>
+              <div className="account-link">Already have an account? <Link to="/login">Login</Link></div>
+            </IonCol>
+          </IonRow>
+        </form>
       </IonContent>
     </IonPage>
   );
 };
 
-export default Register;
+export default connect<OwnProps, {}, DispatchProps>({
+  mapDispatchToProps: {
+    setIsLoggedIn
+  },
+  component: Register
+});
