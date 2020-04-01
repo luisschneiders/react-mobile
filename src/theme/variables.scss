@@ -240,6 +240,13 @@
   --ion-color-navigation: #6600cc;
 }
 
+.container-spinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
 /*
  * App iOS Variables
  * ----------------------------------------------------------------------------

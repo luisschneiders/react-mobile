@@ -49,7 +49,7 @@ const AppRouting: React.FC<ContainerProps> = ({isAuthenticated}) => {
         <Route path='/tab1' component={Tab1} exact={true} />
         <Route path='/tab2' component={Tab2} exact={true} />
         <Route path='/settings' component={Tab3} />
-        <Route path='/' render={() => <Redirect to='/home' />} exact={true} />
+        <Route path='/' render={() => <Redirect to='/login' />} exact={true} />
       </IonRouterOutlet>
       <IonTabBar slot='bottom'>
         {isAuthenticated ? renderTabItems(appTabs().authenticated) : renderTabItems(appTabs().unauthenticated)}

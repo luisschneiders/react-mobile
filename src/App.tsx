@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useReducer } from 'react';
 import {
   IonApp,
   IonSpinner
@@ -21,16 +21,22 @@ import '@ionic/react/css/flex-utils.css';
 import '@ionic/react/css/display.css';
 
 /* Theme variables */
-import '../theme/variables.css';
-import { getCurrentUser } from '../config/Firebase';
-import AppRouting from './AppRouting';
+import './theme/variables.scss';
+import { getCurrentUser } from './config/Firebase';
+import {
+  reducer,
+  initialState
+} from './app/reducer';
+import { AppContextProvider } from './app/AppContext';
+import AppRouting from './app/AppRouting';
+
 
 const App: React.FC = () => {
   const [busy, setBusy] = useState(true);
   const [userIsAuth, setUserIsAuth] = useState(false);
 
   useEffect(() => {
-    getCurrentUser().then((user) => {
+    getCurrentUser().then((user: any) => {
       if (user) {
         setUserIsAuth(true);
         window.history.replaceState({}, '', '/page1');
@@ -45,7 +51,9 @@ const App: React.FC = () => {
 
   return (
     <IonApp>
-      {busy ? <IonSpinner></IonSpinner> : <AppRouting isAuthenticated={userIsAuth}></AppRouting>}
+      <AppContextProvider>
+        {busy ? <div className="container-spinner"><IonSpinner></IonSpinner></div> : <AppRouting isAuthenticated={userIsAuth}></AppRouting>}
+      </AppContextProvider>
     </IonApp>
   );
 };
