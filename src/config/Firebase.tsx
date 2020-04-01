@@ -1,4 +1,5 @@
-import * as firebase from 'firebase';
+import * as firebase from 'firebase/app';
+import 'firebase/auth';
 import { toast } from '../components/toast/Toast';
 import { Firebase } from '../credentials/Firebase';
 import { ToastStatus } from '../components/toast/ToastStatus';
@@ -38,5 +39,9 @@ export function getCurrentUser() {
       unsubscribe();
     });
   });
+}
 
+export async function logoutUser() {
+  const response: any = firebase.auth().signOut();
+  return response;
 }
