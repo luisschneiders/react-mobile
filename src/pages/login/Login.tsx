@@ -29,9 +29,9 @@ interface DispatchProps {
 interface LoginProps extends OwnProps,  DispatchProps { }
 
 const Login: React.FC<LoginProps> = ({setIsLoggedIn, history}) => {
-  const [email, setEmail] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
-  const [busy, setBusy] = useState<boolean>(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [busy, setBusy] = useState(false);
 
   const login = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -47,7 +47,7 @@ const Login: React.FC<LoginProps> = ({setIsLoggedIn, history}) => {
     if (response) {
       // Go to dashboard...
       await setIsLoggedIn(true);
-      window.location.href = '/page1';
+      history.push('/tabs/tab1', {direction: 'none'});
     }
   }
 
@@ -69,13 +69,13 @@ const Login: React.FC<LoginProps> = ({setIsLoggedIn, history}) => {
               <IonLabel position="stacked" color="primary">Email</IonLabel>
               <IonInput name="email" type="email"
                         value={email} spellCheck={false} autocapitalize="off"
-                        onIonChange={(e: any) => setEmail(e.detail.value!)}
+                        onIonChange={(e: any) => setEmail(e.target.value!)}
                         required>
               </IonInput>
             </IonItem>
             <IonItem>
               <IonLabel position="stacked" color="primary">Password</IonLabel>
-              <IonInput name="password" type="password" value={password} onIonChange={(e: any) => setPassword(e.detail.value!)} required>
+              <IonInput name="password" type="password" value={password} onIonChange={(e: any) => setPassword(e.target.value!)} required>
               </IonInput>
             </IonItem>
           </IonList>

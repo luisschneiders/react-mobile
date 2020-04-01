@@ -14,7 +14,10 @@ import {
   IonRow,
   IonCol
 } from '@ionic/react';
-import { Link, RouteComponentProps } from 'react-router-dom';
+import {
+  Link,
+  RouteComponentProps
+} from 'react-router-dom';
 import { toast } from '../../components/toast/Toast';
 import { registerUser } from '../../config/Firebase';
 import { ToastStatus } from '../../components/toast/ToastStatus';
@@ -28,10 +31,10 @@ interface DispatchProps {
 interface RegisterProps extends OwnProps,  DispatchProps { }
 
 const Register: React.FC<RegisterProps> = ({setIsLoggedIn, history}) => {
-  const [email, setEmail] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
-  const [confirmPassword, setConfirmPassword] = useState<string>('');
-  const [busy , setBusy] = useState<boolean>(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [busy , setBusy] = useState(false);
   
   const register = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -51,7 +54,7 @@ const Register: React.FC<RegisterProps> = ({setIsLoggedIn, history}) => {
     if (response) {
       // Go to dashboard...
       await setIsLoggedIn(true);
-      window.location.href = '/page1';
+      history.push('/tabs/tab1', {direction: 'none'});
     }
   }
 
@@ -73,7 +76,7 @@ const Register: React.FC<RegisterProps> = ({setIsLoggedIn, history}) => {
               <IonLabel position="stacked" color="primary">Email</IonLabel>
               <IonInput name="email" type="email"
                         value={email} spellCheck={false} autocapitalize="off"
-                        onIonChange={(e: any) => setEmail(e.detail.value!)}
+                        onIonChange={(e: any) => setEmail(e.target.value!)}
                         required>
               </IonInput>
             </IonItem>
@@ -81,14 +84,14 @@ const Register: React.FC<RegisterProps> = ({setIsLoggedIn, history}) => {
               <IonLabel position="stacked" color="primary">Password</IonLabel>
               <IonInput name="password" type="password"
                         value={password}
-                        onIonChange={(e: any) => setPassword(e.detail.value!)} required>
+                        onIonChange={(e: any) => setPassword(e.target.value!)} required>
               </IonInput>
             </IonItem>
             <IonItem>
               <IonLabel position="stacked" color="primary">Confirm Password</IonLabel>
               <IonInput name="password" type="password"
                         value={confirmPassword}
-                        onIonChange={(e: any) => setConfirmPassword(e.detail.value!)} required>
+                        onIonChange={(e: any) => setConfirmPassword(e.target.value!)} required>
               </IonInput>
             </IonItem>
           </IonList>
