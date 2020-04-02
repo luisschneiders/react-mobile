@@ -98,7 +98,7 @@ const Register: React.FC<RegisterProps> = ({setIsLoggedIn, history}) => {
 
           <IonRow>
             <IonCol>
-              <IonButton type="submit" fill="outline" color="dark" expand="block">Register</IonButton>
+              <IonButton type="submit" fill="outline" expand="block">Register</IonButton>
             </IonCol>
             <IonCol>
               <div className="account-link">Already have an account? <Link to="/login">Login</Link></div>

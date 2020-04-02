@@ -81,10 +81,10 @@ const Login: React.FC<LoginProps> = ({setIsLoggedIn, history}) => {
           </IonList>
           <IonRow>
             <IonCol>
-              <IonButton type="submit" fill="outline" color="dark" expand="block">Login</IonButton>
+              <IonButton type="submit" fill="outline" expand="block">Login</IonButton>
             </IonCol>
             <IonCol>
-              <IonButton routerLink="/register" fill="solid" expand="block">Register</IonButton>
+              <IonButton routerLink="/register" fill="clear" expand="block" color="dark">Register</IonButton>
             </IonCol>
           </IonRow>
         </form>
