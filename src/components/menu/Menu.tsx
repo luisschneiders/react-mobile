@@ -15,6 +15,7 @@ import {
   IonList,
   IonListHeader,
   IonToggle } from "@ionic/react";
+import './Menu.scss'
 import {
   moonOutline,
 } from "ionicons/icons";
@@ -58,7 +59,6 @@ const Menu: React.FC<MenuProps> = ({darkMode, history, isAuthenticated, setDarkM
             </IonItem>
           </IonMenuToggle>
         )
-
       });
   }
 

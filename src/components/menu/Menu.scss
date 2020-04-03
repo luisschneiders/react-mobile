@@ -18,7 +18,7 @@ ion-item.selected {
  * Material Design Menu
 */
 ion-menu.md ion-list {
-  padding: 20px 0;
+  padding: 0;
 }
 
 ion-menu.md ion-list-header {
@@ -35,7 +35,7 @@ ion-menu.md ion-item {
 
   margin-right: 10px;
 
-  border-radius: 0 50px 50px 0;
+  border-radius: 0 4px 4px 0;
 
   font-weight: 500;
 }
@@ -51,10 +51,6 @@ ion-menu.md ion-item.selected ion-icon {
 ion-menu.md ion-list-header,
 ion-menu.md ion-item ion-icon {
   color: var(--ion-color-step-650, #5f6368);
-}
-
-ion-menu.md ion-list:not(:last-of-type) {
-  border-bottom: 1px solid var(--ion-color-step-150, #d7d8da);
 }
 
 
