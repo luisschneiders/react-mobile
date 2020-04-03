@@ -10,6 +10,8 @@
 
 # production
 /build
+/ios
+/www
 credentials
 
 # misc
