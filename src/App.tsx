@@ -43,6 +43,7 @@ import Register from './pages/register/Register';
 import Menu from './components/menu/Menu';
 import { toast } from './components/toast/Toast';
 import { ToastStatus } from './components/toast/ToastStatus';
+import Account from './pages/account/Account';
 
 const App: React.FC = () => {
   return (
@@ -69,7 +70,7 @@ const IonicApp: React.FC<IonicAppProps> = ({ darkMode, setIsLoggedIn }) => {
     getCurrentUser().then((user: any) => {
       if (user) {
         setIsLoggedIn(true);
-        window.history.replaceState({}, '', '/tabs/tab1');
+        // window.history.replaceState({}, '', '/tabs/tab1');
       } else {
         setIsLoggedIn(false);
         window.history.replaceState({}, '', '/');
@@ -86,7 +87,8 @@ const IonicApp: React.FC<IonicAppProps> = ({ darkMode, setIsLoggedIn }) => {
                   <Menu />
                   <IonRouterOutlet id="main">
                     <Route path='/' render={() => <Redirect to='/login' />} exact={true} />
-                    <Route path="/tabs" component={MainTabs} />
+                    <Route path='/tabs' component={MainTabs} />
+                    <Route path='/account' component={Account} exact={true} />
                     <Route path='/home' component={Home} exact={true} />
                     <Route path='/login' component={Login} exact={true} />
                     <Route path='/register' component={Register} exact={true} />
