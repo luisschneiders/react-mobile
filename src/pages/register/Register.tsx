@@ -76,22 +76,21 @@ const Register: React.FC<RegisterProps> = ({setIsLoggedIn, history}) => {
               <IonLabel position="stacked" color="primary">Email</IonLabel>
               <IonInput name="email" type="email"
                         value={email} spellCheck={false} autocapitalize="off"
-                        onIonChange={(e: any) => setEmail(e.target.value!)}
-                        required>
+                        onIonChange={(e: any) => setEmail(e.detail.value!)} required>
               </IonInput>
             </IonItem>
             <IonItem>
               <IonLabel position="stacked" color="primary">Password</IonLabel>
               <IonInput name="password" type="password"
                         value={password}
-                        onIonChange={(e: any) => setPassword(e.target.value!)} required>
+                        onIonChange={(e: any) => setPassword(e.detail.value!)} required>
               </IonInput>
             </IonItem>
             <IonItem>
               <IonLabel position="stacked" color="primary">Confirm Password</IonLabel>
               <IonInput name="password" type="password"
                         value={confirmPassword}
-                        onIonChange={(e: any) => setConfirmPassword(e.target.value!)} required>
+                        onIonChange={(e: any) => setConfirmPassword(e.detail.value!)} required>
               </IonInput>
             </IonItem>
           </IonList>
@@ -101,7 +100,7 @@ const Register: React.FC<RegisterProps> = ({setIsLoggedIn, history}) => {
               <IonButton type="submit" fill="outline" expand="block">Register</IonButton>
             </IonCol>
             <IonCol>
-              <div className="account-link">Already have an account? <Link to="/login">Login</Link></div>
+              <div >Already have an account? <Link to="/login">Login</Link></div>
             </IonCol>
           </IonRow>
         </form>

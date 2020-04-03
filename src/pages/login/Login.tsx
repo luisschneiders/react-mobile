@@ -69,13 +69,14 @@ const Login: React.FC<LoginProps> = ({setIsLoggedIn, history}) => {
               <IonLabel position="stacked" color="primary">Email</IonLabel>
               <IonInput name="email" type="email"
                         value={email} spellCheck={false} autocapitalize="off"
-                        onIonChange={(e: any) => setEmail(e.target.value!)}
-                        required>
+                        onIonChange={(e: any) => setEmail(e.detail.value!)} required>
               </IonInput>
             </IonItem>
             <IonItem>
               <IonLabel position="stacked" color="primary">Password</IonLabel>
-              <IonInput name="password" type="password" value={password} onIonChange={(e: any) => setPassword(e.target.value!)} required>
+              <IonInput name="password" type="password"
+                        value={password}
+                        onIonChange={(e: any) => setPassword(e.detail.value!)} required>
               </IonInput>
             </IonItem>
           </IonList>
