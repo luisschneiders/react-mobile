@@ -45,3 +45,14 @@ export async function logoutUser() {
   const response: any = firebase.auth().signOut();
   return response;
 }
+
+export async function updateUser(user: firebase.User) {
+  try {
+    const response: any = await firebase.auth().updateCurrentUser(user);
+    toast('Successfully updated!', ToastStatus.DEFAULT);
+    return response;
+  } catch(error) {
+    toast(error.message, ToastStatus.ERROR, 4000);
+    return false;
+  }
+}
