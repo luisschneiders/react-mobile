@@ -37,9 +37,9 @@ interface MenuProps extends RouteComponentProps, StateProps, DispatchProps {}
 const Menu: React.FC<MenuProps> = ({darkMode, history, isAuthenticated, setDarkMode, menuEnabled}) => {
   const location = useLocation();
 
-  function renderMenuItems(pages: any[]) {
+  function renderMenuItems(pages: any[], menu: string) {
     return pages
-      .filter(item => !!item.url)
+      .filter(item => !!item.url && item.level === menu)
       .map((page, index, array) => {
         let level: any = null;
         if (index === 0) {
@@ -66,7 +66,10 @@ const Menu: React.FC<MenuProps> = ({darkMode, history, isAuthenticated, setDarkM
     <IonMenu type="overlay" disabled={!menuEnabled} contentId="main">
       <IonContent forceOverscroll={false}>
         <IonList lines="none">
-          {isAuthenticated ? renderMenuItems(appPages().authenticated) : renderMenuItems(appPages().unauthenticated)}
+          {isAuthenticated ? renderMenuItems(appPages().authenticated, 'Menu') : renderMenuItems(appPages().unauthenticated, 'Menu')}
+        </IonList>
+        <IonList lines="none">
+          {isAuthenticated ? renderMenuItems(appPages().authenticated, 'Settings') : renderMenuItems(appPages().unauthenticated, 'Settings')}
         </IonList>
         <IonList lines="none">
           <IonListHeader>Appearance</IonListHeader>
@@ -75,6 +78,9 @@ const Menu: React.FC<MenuProps> = ({darkMode, history, isAuthenticated, setDarkM
             <IonLabel>Dark Mode</IonLabel>
             <IonToggle checked={darkMode} onClick={() => setDarkMode(!darkMode)} />
           </IonItem>
+        </IonList>
+        <IonList lines="none">
+          {isAuthenticated ? renderMenuItems(appPages().authenticated, '') : renderMenuItems(appPages().unauthenticated, '')}
         </IonList>
       </IonContent>
     </IonMenu>
