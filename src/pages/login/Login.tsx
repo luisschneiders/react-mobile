@@ -19,16 +19,17 @@ import { RouteComponentProps } from 'react-router-dom';
 import { toast } from '../../components/toast/Toast';
 import { loginUser } from '../../config/Firebase';
 import { ToastStatus } from '../../components/toast/ToastStatus';
-import { setIsLoggedIn } from '../../data/user/user.actions';
+import { setIsLoggedIn, setDisplayName } from '../../data/user/user.actions';
 import { connect } from '../../data/connect';
 
 interface OwnProps extends RouteComponentProps {}
 interface DispatchProps {
   setIsLoggedIn: typeof setIsLoggedIn;
+  setDisplayName: typeof setDisplayName;
 }
 interface LoginProps extends OwnProps,  DispatchProps { }
 
-const Login: React.FC<LoginProps> = ({setIsLoggedIn, history}) => {
+const Login: React.FC<LoginProps> = ({setIsLoggedIn, history, setDisplayName: setDisplayNameAction}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [busy, setBusy] = useState(false);
@@ -47,6 +48,7 @@ const Login: React.FC<LoginProps> = ({setIsLoggedIn, history}) => {
     if (response) {
       // Go to dashboard...
       await setIsLoggedIn(true);
+      await setDisplayNameAction(response?.user?.displayName);
       history.push('/tabs/tab1', {direction: 'none'});
     }
   }
@@ -96,7 +98,8 @@ const Login: React.FC<LoginProps> = ({setIsLoggedIn, history}) => {
 
 export default connect<OwnProps, {}, DispatchProps>({
   mapDispatchToProps: {
-    setIsLoggedIn
+    setIsLoggedIn,
+    setDisplayName
   },
   component: Login
 });
