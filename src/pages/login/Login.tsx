@@ -19,17 +19,24 @@ import { RouteComponentProps } from 'react-router-dom';
 import { toast } from '../../components/toast/Toast';
 import { loginUser } from '../../config/Firebase';
 import { ToastStatus } from '../../components/toast/ToastStatus';
-import { setIsLoggedIn, setDisplayName } from '../../data/user/user.actions';
+import { setIsLoggedIn, setDisplayName, setPhotoURL } from '../../data/user/user.actions';
 import { connect } from '../../data/connect';
+import { getAvatar } from '../../util/getAvatar';
 
 interface OwnProps extends RouteComponentProps {}
 interface DispatchProps {
   setIsLoggedIn: typeof setIsLoggedIn;
   setDisplayName: typeof setDisplayName;
+  setPhotoURL: typeof setPhotoURL;
 }
 interface LoginProps extends OwnProps,  DispatchProps { }
 
-const Login: React.FC<LoginProps> = ({setIsLoggedIn, history, setDisplayName: setDisplayNameAction}) => {
+const Login: React.FC<LoginProps> = ({
+    setIsLoggedIn,
+    history,
+    setDisplayName: setDisplayNameAction,
+    setPhotoURL: setPhotoURLAction,
+  }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [busy, setBusy] = useState(false);
@@ -49,6 +56,7 @@ const Login: React.FC<LoginProps> = ({setIsLoggedIn, history, setDisplayName: se
       // Go to dashboard...
       await setIsLoggedIn(true);
       await setDisplayNameAction(response?.user?.displayName);
+      await setPhotoURLAction(getAvatar(response?.user?.email));
       history.push('/tabs/tab1', {direction: 'none'});
     }
   }
@@ -99,7 +107,8 @@ const Login: React.FC<LoginProps> = ({setIsLoggedIn, history, setDisplayName: se
 export default connect<OwnProps, {}, DispatchProps>({
   mapDispatchToProps: {
     setIsLoggedIn,
-    setDisplayName
+    setDisplayName,
+    setPhotoURL,
   },
   component: Login
 });

@@ -2,5 +2,6 @@ export interface UserState {
   darkMode: boolean;
   isLoggedin: boolean;
   loading: boolean;
-  displayName?: string;
+  displayName?: string | null | undefined;
+  photoURL?: string | null | undefined;
 }

@@ -3,13 +3,14 @@ import 'firebase/auth';
 import { toast } from '../components/toast/Toast';
 import { Firebase } from '../credentials/Firebase';
 import { ToastStatus } from '../components/toast/ToastStatus';
+import { UserProfile } from '../data/user/UserProfile';
 
 firebase.initializeApp(Firebase);
 
 export async function loginUser(email: string, password: string) {
   try {
     const response: any = await firebase.auth().signInWithEmailAndPassword(email, password);
-    toast(`Welcome back ${response?.user?.displayName}!`, ToastStatus.DEFAULT);
+    toast(`Welcome back ${response?.user?.displayName || ''}!`, ToastStatus.DEFAULT);
     return response;
   } catch(error) {
     toast(error.message, ToastStatus.ERROR, 4000);
@@ -46,9 +47,9 @@ export async function logoutUser() {
   return response;
 }
 
-export async function updateUser(username: string | undefined) {
+export async function updateProfile(profile: UserProfile) {
   try {
-    firebase.auth().currentUser?.updateProfile({displayName: username});
+    firebase.auth().currentUser?.updateProfile(profile);
     return true;
 
   } catch(error) {

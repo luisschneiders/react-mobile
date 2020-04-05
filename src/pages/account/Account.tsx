@@ -18,36 +18,53 @@ import {
   IonAvatar
 } from '@ionic/react';
 import './Account.scss';
-import { updateUser } from '../../config/Firebase';
+import { updateProfile } from '../../config/Firebase';
 import { toast } from '../../components/toast/Toast';
 import { ToastStatus } from '../../components/toast/ToastStatus';
 import { delay } from '../../util/delay';
 import { RouteComponentProps } from 'react-router';
-import { setDisplayName } from '../../data/user/user.actions';
+import { setDisplayName, setPhotoURL } from '../../data/user/user.actions';
 import { connect } from '../../data/connect';
-
 
 interface OwnProps extends RouteComponentProps {}
 interface StateProps {
-  displayName?: string
+  displayName?: string | null | undefined,
+  photoURL?: string | null | undefined
 }
 interface DispatchProps {
-  setDisplayName: typeof setDisplayName
+  setDisplayName: typeof setDisplayName;
+  setPhotoURL: typeof setPhotoURL;
 }
 
 interface AccountProps extends OwnProps, StateProps, DispatchProps {}
 
-const Account: React.FC<AccountProps> = ({ setDisplayName, displayName }) => {
-  const [username, setUsername] = useState();
+const Account: React.FC<AccountProps> = ({
+    setDisplayName,
+    displayName,
+    setPhotoURL,
+    photoURL
+  }) => {
+
+  let [username, setUsername] = useState<string | null | undefined>();
+  let [photo, setPhoto] = useState<string | null | undefined>();
+
   const [busy , setBusy] = useState(false);
   const account = async (e: React.FormEvent) => {
     e.preventDefault();
     setBusy(true);
-    const response: any = await updateUser(username);
+    if (!username) {
+      username = displayName;
+    }
+
+    if (!photo) {
+      photo = photoURL;
+    }
+    const response: any = await updateProfile({ displayName :username, photoURL: photo });
     await delay(500);
     setBusy(false);
     if (response) {
       setDisplayName(username);
+      setPhotoURL(photo);
       toast('Successfully updated!', ToastStatus.DEFAULT);
     }
   }
@@ -67,7 +84,7 @@ const Account: React.FC<AccountProps> = ({ setDisplayName, displayName }) => {
         <form noValidate onSubmit={account}>
           <div className="account account__avatar">
             <IonAvatar>
-              <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y" />
+              {photoURL ? <img src={photoURL} alt="Account" /> : <img src="/assets/img/avatar.svg" alt="Profile" />}
             </IonAvatar>
             <h2>{username ? username : displayName}</h2>
           </div>
@@ -92,14 +109,14 @@ const Account: React.FC<AccountProps> = ({ setDisplayName, displayName }) => {
   );
 };
 
-// export default Account;
-
 export default connect<OwnProps, StateProps, DispatchProps>({
   mapStateToProps: (state) => ({
-    displayName: state.user.displayName
+    displayName: state.user.displayName,
+    photoURL: state.user.photoURL,
   }),
   mapDispatchToProps: {
-    setDisplayName
+    setDisplayName,
+    setPhotoURL,
   },
   component: Account
-})
+});

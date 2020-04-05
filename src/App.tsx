@@ -33,7 +33,7 @@ import './theme/variables.scss';
 import { getCurrentUser, logoutUser } from './config/Firebase';
 import { connect } from './data/connect';
 import { AppContextProvider } from './app/AppContext';
-import { setIsLoggedIn, setDisplayName } from './data/user/user.actions';
+import { setIsLoggedIn, setDisplayName, setPhotoURL } from './data/user/user.actions';
 
 import MainTabs from './components/tabs/MainTabs';
 import Home from './pages/home/Home';
@@ -60,11 +60,17 @@ interface StateProps {
 interface DispatchProps {
   setIsLoggedIn: typeof setIsLoggedIn;
   setDisplayName: typeof setDisplayName;
+  setPhotoURL: typeof setPhotoURL;
 }
 
 interface IonicAppProps extends StateProps, DispatchProps { }
 
-const IonicApp: React.FC<IonicAppProps> = ({ darkMode, setIsLoggedIn, setDisplayName }) => {
+const IonicApp: React.FC<IonicAppProps> = ({
+    darkMode,
+    setIsLoggedIn,
+    setDisplayName,
+    setPhotoURL
+  }) => {
   const [busy, setBusy] = useState(true);
 
   useEffect(() => {
@@ -72,6 +78,7 @@ const IonicApp: React.FC<IonicAppProps> = ({ darkMode, setIsLoggedIn, setDisplay
       if (user) {
         setIsLoggedIn(true);
         setDisplayName(user.displayName);
+        setPhotoURL(user.photoURL);
         // window.history.replaceState({}, '', '/tabs/tab1');
       } else {
         setIsLoggedIn(false);
@@ -79,7 +86,7 @@ const IonicApp: React.FC<IonicAppProps> = ({ darkMode, setIsLoggedIn, setDisplay
       }
       setBusy(false);
     });
-  }, [setIsLoggedIn, setDisplayName]);
+  }, [setIsLoggedIn, setDisplayName, setPhotoURL]);
 
   return (
     <IonApp className={`${darkMode ? 'dark-theme' : ''}`}>
@@ -119,7 +126,8 @@ const IonicAppConnected = connect<{}, StateProps, DispatchProps>({
   }),
   mapDispatchToProps: { 
     setIsLoggedIn,
-    setDisplayName
+    setDisplayName,
+    setPhotoURL
   },
   component: IonicApp
 });
