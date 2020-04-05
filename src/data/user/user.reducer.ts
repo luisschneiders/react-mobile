@@ -11,5 +11,7 @@ export function userReducer(state: UserState, action: UserActions): UserState {
       return { ...state, displayName: action.displayName };
     case 'SET_PHOTO_URL':
       return { ...state, photoURL: action.photoURL };
+    case 'SET_USER_PREFERENCE':
+      return { ...state, ...action.data };
   }
 }

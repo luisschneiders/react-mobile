@@ -1,5 +1,6 @@
-import { setIsLoggedInData } from '../dataApi';
+import { setIsLoggedInData, setDarkModeData, getUserData } from '../dataApi';
 import { ActionType } from '../../util/types';
+import { UserState } from './user.state';
 
 export const logoutUser = () => async (dispatch: React.Dispatch<any>) => {
   await setIsLoggedInData(false);
@@ -14,7 +15,7 @@ export const setIsLoggedIn = (loggedIn: boolean) => async (dispatch: React.Dispa
 }
 
 export const setDarkMode = (darkMode: boolean) => async (dispatch: React.Dispatch<any>) => {
-  // await setDarkModeData(darkMode)
+  await setDarkModeData(darkMode)
   return ({
    type: 'SET_DARK_MODE',
    darkMode
@@ -35,8 +36,19 @@ export const setPhotoURL = (photoURL?: string | null | undefined) => async (disp
   } as const);
 }
 
+export const getUserPreference = () => async (dispatch: React.Dispatch<any>) => {
+  const data = await getUserData();
+  dispatch(setUserPreference(data));
+}
+
+export const setUserPreference = (data: Partial<UserState>) => ({
+  type: 'SET_USER_PREFERENCE',
+  data
+} as const);
+
 export type UserActions =
   | ActionType<typeof setIsLoggedIn>
   | ActionType<typeof setDarkMode>
   | ActionType<typeof setDisplayName>
-  | ActionType<typeof setPhotoURL>;
+  | ActionType<typeof setPhotoURL>
+  | ActionType<typeof setUserPreference>;
