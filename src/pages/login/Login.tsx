@@ -29,7 +29,7 @@ interface DispatchProps {
   setDisplayName: typeof setDisplayName;
   setPhotoURL: typeof setPhotoURL;
 }
-interface LoginProps extends OwnProps,  DispatchProps { }
+interface LoginProps extends OwnProps, DispatchProps { }
 
 const Login: React.FC<LoginProps> = ({
     setIsLoggedIn,
