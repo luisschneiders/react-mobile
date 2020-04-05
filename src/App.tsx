@@ -73,8 +73,9 @@ const IonicApp: React.FC<IonicAppProps> = ({
     setPhotoURL,
     getUserPreference
   }) => {
+
   const [busy, setBusy] = useState(true);
-  console.log('LFS - darkMode: ', darkMode);
+
   useEffect(() => {
     getCurrentUser().then((user: any) => {
       if (user) {
