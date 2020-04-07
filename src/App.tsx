@@ -30,10 +30,18 @@ import '@ionic/react/css/display.css';
 /* Theme variables */
 import './theme/variables.scss';
 
-import { getCurrentUser, logoutUser } from './config/Firebase';
+import { 
+  getCurrentUser,
+  logoutUser
+} from './config/Firebase';
 import { connect } from './data/connect';
 import { AppContextProvider } from './app/AppContext';
-import { setIsLoggedIn, setDisplayName, setPhotoURL, setDarkMode, getUserPreference } from './data/user/user.actions';
+import {
+  setIsLoggedIn,
+  setDisplayName,
+  setPhotoURL,
+  getUserPreference
+} from './data/user/user.actions';
 
 import MainTabs from './components/tabs/MainTabs';
 import Home from './pages/home/Home';
@@ -90,7 +98,7 @@ const IonicApp: React.FC<IonicAppProps> = ({
       setBusy(false);
       getUserPreference();
     });
-  }, [setIsLoggedIn, setDisplayName, setPhotoURL, setDarkMode]);
+  }, [setIsLoggedIn, setDisplayName, setPhotoURL, getUserPreference]);
 
   return (
     <IonApp className={`${darkMode ? 'dark-theme' : ''}`}>

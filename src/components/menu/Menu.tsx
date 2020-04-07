@@ -17,7 +17,7 @@ import {
   IonToggle } from "@ionic/react";
 import './Menu.scss'
 import {
-  moonOutline,
+  moonOutline, sunnyOutline,
 } from "ionicons/icons";
 import { connect } from "../../data/connect";
 import { appPages } from "../../app/AppPages";
@@ -74,8 +74,8 @@ const Menu: React.FC<MenuProps> = ({darkMode, history, isAuthenticated, setDarkM
         <IonList lines="none">
           <IonListHeader>Appearance</IonListHeader>
           <IonItem>
-            <IonIcon slot="start" icon={moonOutline}></IonIcon>
-            <IonLabel>Dark Mode</IonLabel>
+            {!darkMode ? <IonIcon slot="start" icon={moonOutline}></IonIcon> : <IonIcon slot="start" icon={sunnyOutline}></IonIcon>}
+            {!darkMode ? <IonLabel>Dark Mode</IonLabel> : <IonLabel>Light Mode</IonLabel>}
             <IonToggle checked={darkMode} onClick={() => setDarkMode(!darkMode)} />
           </IonItem>
         </IonList>
