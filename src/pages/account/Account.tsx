@@ -15,7 +15,12 @@ import {
   IonLabel,
   IonInput,
   IonLoading,
-  IonAvatar
+  IonAvatar,
+  IonProgressBar,
+  IonCard,
+  IonCardHeader,
+  IonCardContent,
+  IonCardTitle
 } from '@ionic/react';
 import './Account.scss';
 import { updateProfile } from '../../config/Firebase';
@@ -25,6 +30,7 @@ import { delay } from '../../util/delay';
 import { RouteComponentProps } from 'react-router';
 import { setDisplayName, setPhotoURL } from '../../data/user/user.actions';
 import { connect } from '../../data/connect';
+import useFirebaseUpload from '../../hooks/useFirebaseUpload';
 
 interface OwnProps extends RouteComponentProps {}
 interface StateProps {
@@ -45,26 +51,24 @@ const Account: React.FC<AccountProps> = ({
     photoURL
   }) => {
 
-  let [username, setUsername] = useState<string | null | undefined>();
-  let [photo, setPhoto] = useState<string | null | undefined>();
-
+  const [username, setUsername] = useState<string | null | undefined>();
   const [busy , setBusy] = useState(false);
+  const [{ data, isLoading, isError, progress }, setFileData ] = useFirebaseUpload();
+
+  const altImage: any = displayName;
+
   const account = async (e: React.FormEvent) => {
     e.preventDefault();
     setBusy(true);
-    if (!username) {
-      username = displayName;
-    }
 
-    if (!photo) {
-      photo = photoURL;
-    }
-    const response: any = await updateProfile({ displayName :username, photoURL: photo });
+    const response: any = await updateProfile({ 
+      displayName: username ? username : displayName,
+      photoURL: data?.downloadUrl ? data?.downloadUrl : photoURL });
     await delay(500);
     setBusy(false);
     if (response) {
-      setDisplayName(username);
-      setPhotoURL(photo);
+      setDisplayName(username ? username : displayName);
+      setPhotoURL(data?.downloadUrl ? data?.downloadUrl : photoURL);
       toast('Successfully updated!', ToastStatus.DEFAULT);
     }
   }
@@ -82,12 +86,37 @@ const Account: React.FC<AccountProps> = ({
       <IonLoading message="Updating..." duration={0} isOpen={busy}></IonLoading>
       <IonContent className="ion-padding">
         <form noValidate onSubmit={account}>
-          <div className="account account__avatar">
-            <IonAvatar>
-              {photoURL ? <img src={photoURL} alt="Account" /> : <img src="/assets/img/avatar.svg" alt="Profile" />}
-            </IonAvatar>
-            <h2>{username ? username : displayName}</h2>
-          </div>
+          <IonCard>
+            <IonCardHeader class="ion-text-center">
+              <IonCardTitle>
+                {displayName ? displayName : username}
+              </IonCardTitle>
+            </IonCardHeader>
+            <IonCardContent>
+              <div className="account account__avatar">
+
+                <IonAvatar>
+                  {photoURL ? <img src={photoURL} alt={altImage} /> : data && <img src={data.downloadUrl} alt={data.metaData.name} />}
+                </IonAvatar>
+
+                <IonButton className="account account__fileUpload" fill="clear">
+                  <span>Select Image</span>
+                  <input type="file" accept="image/jpg" className="upload"
+                    onChange={(e: any) => {
+                      setPhotoURL('');
+                      setFileData(e.target.files[0]);
+                    }}/>
+                </IonButton>
+
+                {progress && (
+                  <IonProgressBar value={progress.value}></IonProgressBar>
+                )}
+                {isError && <div>Error: {isError.message}</div>}
+
+              </div>
+              
+            </IonCardContent>
+          </IonCard>
           <IonList>
             <IonItem>
               <IonLabel position="stacked" color="primary">Username</IonLabel>
