@@ -52,6 +52,7 @@ import Menu from './components/menu/Menu';
 import { toast } from './components/toast/Toast';
 import { ToastStatus } from './components/toast/ToastStatus';
 import Account from './pages/account/Account';
+import { getAvatar } from './util/getAvatar';
 
 const App: React.FC = () => {
   return (
@@ -89,7 +90,7 @@ const IonicApp: React.FC<IonicAppProps> = ({
       if (user) {
         setIsLoggedIn(true);
         setDisplayName(user.displayName);
-        setPhotoURL(user.photoURL);
+        setPhotoURL(user.photoURL ? user.photoURL : getAvatar(user.email));
         // window.history.replaceState({}, '', '/tabs/tab1');
       } else {
         setIsLoggedIn(false);
