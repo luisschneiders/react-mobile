@@ -54,9 +54,10 @@ const Login: React.FC<LoginProps> = ({
 
     if (response) {
       // Go to dashboard...
+      console.log('LFS - login response: ', response);
       await setIsLoggedIn(true);
-      await setDisplayNameAction(response?.user?.displayName);
-      await setPhotoURLAction(getAvatar(response?.user?.email));
+      await setDisplayNameAction(response.user.displayName ? response.user.displayName : null);
+      await setPhotoURLAction(response.user.photoURL ? response.user.photoURL : getAvatar(response.user.email));
       history.push('/tabs/tab1', {direction: 'none'});
     }
   }
