@@ -17,11 +17,16 @@ import {
 import './Login.scss';
 import { RouteComponentProps } from 'react-router-dom';
 import { toast } from '../../components/toast/Toast';
-import { loginUser } from '../../config/Firebase';
-import { ToastStatus } from '../../components/toast/ToastStatus';
-import { setIsLoggedIn, setDisplayName, setPhotoURL } from '../../data/user/user.actions';
+import { loginUser } from '../../data/api/Firebase';
+import { ToastStatus } from '../../enum/ToastStatus';
+import {
+  setIsLoggedIn,
+  setDisplayName,
+  setPhotoURL
+} from '../../data/user/user.actions';
 import { connect } from '../../data/connect';
 import { getAvatar } from '../../util/getAvatar';
+import * as ROUTES from '../../constants/Routes';
 
 interface OwnProps extends RouteComponentProps {}
 interface DispatchProps {
@@ -57,7 +62,7 @@ const Login: React.FC<LoginProps> = ({
       await setIsLoggedIn(true);
       await setDisplayNameAction(response.user.displayName ? response.user.displayName : null);
       await setPhotoURLAction(response.user.photoURL ? response.user.photoURL : getAvatar(response.user.email));
-      history.push('/tabs/tab1', {direction: 'none'});
+      history.push(ROUTES.TAB1, {direction: 'none'});
     }
   }
 
@@ -95,7 +100,7 @@ const Login: React.FC<LoginProps> = ({
               <IonButton type="submit" fill="outline" expand="block">Login</IonButton>
             </IonCol>
             <IonCol>
-              <IonButton routerLink="/register" fill="clear" expand="block" color="dark">Register</IonButton>
+              <IonButton routerLink={ROUTES.REGISTER} fill="clear" expand="block" color="dark">Register</IonButton>
             </IonCol>
           </IonRow>
         </form>

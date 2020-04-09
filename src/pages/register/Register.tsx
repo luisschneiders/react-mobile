@@ -19,11 +19,15 @@ import {
   RouteComponentProps
 } from 'react-router-dom';
 import { toast } from '../../components/toast/Toast';
-import { registerUser } from '../../config/Firebase';
-import { ToastStatus } from '../../components/toast/ToastStatus';
-import { setIsLoggedIn, setPhotoURL } from '../../data/user/user.actions';
+import { registerUser } from '../../data/api/Firebase';
+import { ToastStatus } from '../../enum/ToastStatus';
+import {
+  setIsLoggedIn,
+  setPhotoURL
+} from '../../data/user/user.actions';
 import { connect } from '../../data/connect';
 import { getAvatar } from '../../util/getAvatar';
+import * as ROUTES from '../../constants/Routes';
 
 interface OwnProps extends RouteComponentProps {}
 interface DispatchProps {
@@ -61,7 +65,7 @@ const Register: React.FC<RegisterProps> = ({
       // Go to dashboard...
       await setIsLoggedIn(true);
       await setPhotoURLAction(getAvatar(response?.user?.email));
-      history.push('/tabs/tab1', {direction: 'none'});
+      history.push(ROUTES.TAB1, {direction: 'none'});
     }
   }
 
@@ -107,7 +111,7 @@ const Register: React.FC<RegisterProps> = ({
               <IonButton type="submit" fill="outline" expand="block">Register</IonButton>
             </IonCol>
             <IonCol>
-              <div >Already have an account? <Link to="/login">Login</Link></div>
+              <div >Already have an account? <Link to={ROUTES.LOGIN}>Login</Link></div>
             </IonCol>
           </IonRow>
         </form>

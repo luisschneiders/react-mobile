@@ -33,7 +33,7 @@ import './theme/variables.scss';
 import { 
   getCurrentUser,
   logoutUser
-} from './config/Firebase';
+} from './data/api/Firebase';
 import { connect } from './data/connect';
 import { AppContextProvider } from './app/AppContext';
 import {
@@ -50,9 +50,10 @@ import Register from './pages/register/Register';
 
 import Menu from './components/menu/Menu';
 import { toast } from './components/toast/Toast';
-import { ToastStatus } from './components/toast/ToastStatus';
+import { ToastStatus } from './enum/ToastStatus';
 import Account from './pages/account/Account';
 import { getAvatar } from './util/getAvatar';
+import * as ROUTES  from './constants/Routes';
 
 const App: React.FC = () => {
   return (
@@ -91,7 +92,7 @@ const IonicApp: React.FC<IonicAppProps> = ({
         setIsLoggedIn(true);
         setDisplayName(user.displayName);
         setPhotoURL(user.photoURL ? user.photoURL : getAvatar(user.email));
-        // window.history.replaceState({}, '', '/tabs/tab1');
+        // window.history.replaceState({}, '', ROUTES.TAB1);
       } else {
         setIsLoggedIn(false);
         window.history.replaceState({}, '', '/');
@@ -99,7 +100,12 @@ const IonicApp: React.FC<IonicAppProps> = ({
       setBusy(false);
       getUserPreference();
     });
-  }, [setIsLoggedIn, setDisplayName, setPhotoURL, getUserPreference]);
+  }, [
+      setIsLoggedIn,
+      setDisplayName,
+      setPhotoURL,
+      getUserPreference
+    ]);
 
   return (
     <IonApp className={`${darkMode ? 'dark-theme' : ''}`}>
@@ -108,20 +114,20 @@ const IonicApp: React.FC<IonicAppProps> = ({
                 <IonSplitPane contentId="main">
                   <Menu />
                   <IonRouterOutlet id="main">
-                    <Route path='/' render={() => <Redirect to='/login' />} exact={true} />
-                    <Route path='/tabs' component={MainTabs} />
-                    <Route path='/account' component={Account} exact={true} />
-                    <Route path='/home' component={Home} exact={true} />
-                    <Route path='/login' component={Login} exact={true} />
-                    <Route path='/register' component={Register} exact={true} />
-                    <Route path="/logout" render={() => {
+                    <Route path='/' render={() => <Redirect to={ROUTES.LOGIN} />} exact={true} />
+                    <Route path={ROUTES.TABS} component={MainTabs} />
+                    <Route path={ROUTES.ACCOUNT} component={Account} exact={true} />
+                    <Route path={ROUTES.HOME} component={Home} exact={true} />
+                    <Route path={ROUTES.LOGIN} component={Login} exact={true} />
+                    <Route path={ROUTES.REGISTER} component={Register} exact={true} />
+                    <Route path={ROUTES.LOGOUT} render={() => {
                       logoutUser().then(() => {
                         toast('Successfully logged out!', ToastStatus.DEFAULT);
                         setIsLoggedIn(false);
                       }, (error) => {
                         toast(error.message, ToastStatus.ERROR, 4000);
                       });
-                      return <Redirect to="/login" />
+                      return <Redirect to={ROUTES.LOGIN} />
                     }} />
                   </IonRouterOutlet>
                 </IonSplitPane>

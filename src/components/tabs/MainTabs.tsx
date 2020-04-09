@@ -14,6 +14,7 @@ import Tab3 from '../../pages/tab3/Tab3';
 import { AppPage } from '../../app/AppPage';
 import { appTabs } from './AppTabs';
 import { connect } from '../../data/connect';
+import * as ROUTES from '../../constants/Routes';
 
 interface StateProps {
   isAuthenticated: boolean;
@@ -35,11 +36,11 @@ const MainTabs: React.FC<StateProps> = ({isAuthenticated}) => {
   return (
     <IonTabs>
       <IonRouterOutlet>
-        <Redirect path="/tabs" to="/tabs/tab1" exact={true} />
-        <Route path='/tabs/tab1' render={() => <Tab1></Tab1>} exact={true} />
-        <Route path='/tabs/tab2' render={() => <Tab2></Tab2>} exact={true} />
-        <Route path='/tabs/tab3' render={() => <Tab3></Tab3>} exact={true} />
-        <Route path='/' render={() => <Redirect to='/home' />} exact={true} />
+        <Redirect path={ROUTES.TABS} to={ROUTES.TAB1} exact={true} />
+        <Route path={ROUTES.TAB1} render={() => <Tab1></Tab1>} exact={true} />
+        <Route path={ROUTES.TAB2} render={() => <Tab2></Tab2>} exact={true} />
+        <Route path={ROUTES.TAB3} render={() => <Tab3></Tab3>} exact={true} />
+        <Route path='/' render={() => <Redirect to={ROUTES.HOME} />} exact={true} />
       </IonRouterOutlet>
       <IonTabBar slot="bottom">
         {isAuthenticated ? renderTabItems(appTabs().authenticated) : renderTabItems(appTabs().unauthenticated)}

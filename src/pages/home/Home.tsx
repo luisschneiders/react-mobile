@@ -11,6 +11,7 @@ import {
   IonCol
 } from '@ionic/react';
 import './Home.scss';
+import * as ROUTES from '../../constants/Routes';
 
 const Home: React.FC = () => {
   return (
@@ -30,7 +31,7 @@ const Home: React.FC = () => {
           <IonRow>
             <IonCol>
               <div>
-                <IonButton routerLink="/login" expand="full" color="light">Login</IonButton>
+                <IonButton routerLink={ROUTES.LOGIN} expand="full" color="light">Login</IonButton>
               </div>
             </IonCol>
           </IonRow>
@@ -42,7 +43,7 @@ const Home: React.FC = () => {
           <IonRow>
             <IonCol>
               <div>
-                <IonButton routerLink="/register" expand="full" color="medium">Register</IonButton>
+                <IonButton routerLink={ROUTES.REGISTER} expand="full" color="medium">Register</IonButton>
               </div>
             </IonCol>
           </IonRow>
