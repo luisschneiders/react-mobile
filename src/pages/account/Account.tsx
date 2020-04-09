@@ -23,9 +23,9 @@ import {
   IonCardTitle
 } from '@ionic/react';
 import './Account.scss';
-import { updateProfile } from '../../config/Firebase';
+import { updateProfile } from '../../data/api/Firebase';
 import { toast } from '../../components/toast/Toast';
-import { ToastStatus } from '../../components/toast/ToastStatus';
+import { ToastStatus } from '../../enum/ToastStatus';
 import { delay } from '../../util/delay';
 import { RouteComponentProps } from 'react-router';
 import { setDisplayName, setPhotoURL } from '../../data/user/user.actions';
@@ -130,7 +130,7 @@ const Account: React.FC<AccountProps> = ({
           </IonList>
           <IonRow>
             <IonCol>
-              <IonButton type="submit" fill="solid" color="" expand="block">Update</IonButton>
+              <IonButton type="submit" fill="solid" expand="block">Update</IonButton>
             </IonCol>
           </IonRow>
         </form>
