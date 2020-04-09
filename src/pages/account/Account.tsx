@@ -52,8 +52,8 @@ const Account: React.FC<AccountProps> = ({
   }) => {
 
   const [username, setUsername] = useState<string | null | undefined>();
-  const [busy , setBusy] = useState(false);
-  const [{ data, isLoading, isError, progress }, setFileData ] = useFirebaseUpload();
+  const [busy, setBusy] = useState(false);
+  const [{ data, isError, progress }, setFileData ] = useFirebaseUpload();
 
   const altImage: any = displayName;
 
@@ -67,6 +67,7 @@ const Account: React.FC<AccountProps> = ({
     await delay(500);
     setBusy(false);
     if (response) {
+      setUsername(null);
       setDisplayName(username ? username : displayName);
       setPhotoURL(data?.downloadUrl ? data?.downloadUrl : photoURL);
       toast('Successfully updated!', ToastStatus.DEFAULT);
