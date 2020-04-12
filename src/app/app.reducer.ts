@@ -1,24 +1,24 @@
-export interface IState {
+export interface State {
   isAuth: boolean;
   user: null;
 }
 
-interface ILogout {
+interface Logout {
   type: 'LOGOUT'
 }
 
-interface ILogin {
+interface Login {
   type: 'LOGIN'
 }
 
-export type Actions = ILogout | ILogin;
+export type Actions = Logout | Login;
 
-export const initialState: IState = {
+export const initialState: State = {
   isAuth: false,
   user: null
 }
 
-export function reducer (state: IState, action: any) {
+export function reducer (state: State, action: any) {
   switch (action.type) {
     case 'LOGOUT':
       return { ...state, isAuth: false, user: null };
