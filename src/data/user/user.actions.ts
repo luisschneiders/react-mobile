@@ -1,13 +1,8 @@
-import { setIsLoggedInData, setDarkModeData, getUserData } from '../dataApi';
+import { setDarkModeData, getUserData } from '../dataStorage';
 import { ActionType } from '../../util/types';
 import { UserState } from './user.state';
 
-export const logoutUser = () => async (dispatch: React.Dispatch<any>) => {
-  await setIsLoggedInData(false);
-};
-
 export const setIsLoggedIn = (loggedIn: boolean) => async (dispatch: React.Dispatch<any>) => {
-  // await setIsLoggedInData(loggedIn);
   return ({
     type: 'SET_IS_LOGGEDIN',
     loggedIn
