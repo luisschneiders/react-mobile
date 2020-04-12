@@ -4,7 +4,7 @@ import {
   cogOutline,
   albumsOutline,
 } from "ionicons/icons";
-import { AppPage } from "../../app/AppPage";
+import { AppPage } from "../../models/AppPage";
 import * as ROUTES from '../../constants/Routes'
 
 export function appTabs() {

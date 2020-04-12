@@ -6,7 +6,7 @@ import {
   logOut,
   peopleOutline
 } from 'ionicons/icons';
-import { AppPage } from './AppPage';
+import { AppPage } from '../models/AppPage';
 import * as ROUTES from '../constants/Routes'
 
 export function appPages() {

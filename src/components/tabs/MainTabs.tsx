@@ -11,7 +11,7 @@ import { Route, Redirect } from 'react-router';
 import Tab1 from '../../pages/tab1/Tab1';
 import Tab2 from '../../pages/tab2/Tab2';
 import Tab3 from '../../pages/tab3/Tab3';
-import { AppPage } from '../../app/AppPage';
+import { AppPage } from '../../models/AppPage';
 import { appTabs } from './AppTabs';
 import { connect } from '../../data/connect';
 import * as ROUTES from '../../constants/Routes';

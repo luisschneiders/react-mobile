@@ -3,7 +3,7 @@ import 'firebase/auth';
 import { toast } from '../../components/toast/Toast';
 import { Firebase } from '../../credentials/Firebase';
 import { ToastStatus } from '../../enum/ToastStatus';
-import { UserProfile } from '../user/UserProfile';
+import { UserProfile } from '../../models/UserProfile';
 
 firebase.initializeApp(Firebase);
 
