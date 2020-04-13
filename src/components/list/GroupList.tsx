@@ -6,7 +6,8 @@ import {
   IonThumbnail,
   IonImg,
   IonItemGroup,
-  IonItemDivider
+  IonItemDivider,
+  IonText
 } from '@ionic/react';
 
 interface ContainerProps {
@@ -21,7 +22,9 @@ const GroupList: React.FC<ContainerProps> = ({data}) => {
           <IonItemGroup key={`group-${index}`}>
             <IonItemDivider sticky>
               <IonLabel>
-                <h2>{group[0].category}</h2>
+                <IonText color="primary">
+                  <h3 className="ion-text-uppercase">{group[0].category}</h3>
+                </IonText>
               </IonLabel>
             </IonItemDivider>
             {group.map((item: any, index: number) => (

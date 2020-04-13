@@ -15,33 +15,34 @@ import {
   IonThumbnail,
 } from '@ionic/react';
 import './Tab1.scss';
-import { generalNews } from '../../data/api/Finnhub';
-import { NewsType } from '../../enum/NewsType';
 import GroupList from '../../components/list/GroupList';
+import { connect } from '../../data/connect';
+import { News } from '../../models/News';
 
-const Tab1: React.FC = () => {
+interface StateProps {
+  news: News,
+}
+interface Tab1Props extends StateProps {}
+
+const Tab1: React.FC<Tab1Props> = ({ news }) => {
   const [isError, setError] = useState<boolean>(false);
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
   const [items, setItems] = useState<any>();
   const noNews: string = 'assets/img/no-news.jpg';
 
-  // TODO: add state, actions and reducer
-
   useEffect(() => {
     setIsLoaded(true);
-
-    generalNews(NewsType.GENERAL, 5).then((response: any) => {
-      if (Object.keys(response).length > 0) {
-          setItems(response);
-          setIsLoaded(false);
-      }
-      else {
+    if (news && Object.keys(news).length > 0) {
+      setError(false);
+      setTimeout(() => {
         setIsLoaded(false);
-        setError(true);
-      }
-    });
-
-  }, []);
+      }, 1000);
+      setItems(news);
+    } else {
+      setError(true);
+      setIsLoaded(false);
+    }
+  }, [news]);
 
   return (
     <IonPage>
@@ -71,4 +72,9 @@ const Tab1: React.FC = () => {
   );
 };
 
-export default Tab1;
+export default connect<{}, StateProps, {}>({
+  mapStateToProps: (state) => ({
+    news: state.data.news,
+  }),
+  component: Tab1
+});

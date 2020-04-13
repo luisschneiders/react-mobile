@@ -20,7 +20,6 @@ interface StateProps {
   isAuthenticated: boolean;
 }
 
-
 const MainTabs: React.FC<StateProps> = ({isAuthenticated}) => {
   function renderTabItems(tabs: AppPage[]) {
     return tabs
