@@ -54,6 +54,7 @@ import { ToastStatus } from './enum/ToastStatus';
 import Account from './pages/account/Account';
 import { getAvatar } from './util/getAvatar';
 import * as ROUTES  from './constants/Routes';
+import { getSessionData } from './data/sessions/sessions.actions';
 
 const App: React.FC = () => {
   return (
@@ -72,6 +73,7 @@ interface DispatchProps {
   setDisplayName: typeof setDisplayName;
   setPhotoURL: typeof setPhotoURL;
   getUserPreference: typeof getUserPreference;
+  getSessionData: typeof getSessionData;
 }
 
 interface IonicAppProps extends StateProps, DispatchProps { }
@@ -81,7 +83,8 @@ const IonicApp: React.FC<IonicAppProps> = ({
     setIsLoggedIn,
     setDisplayName,
     setPhotoURL,
-    getUserPreference
+    getUserPreference,
+    getSessionData
   }) => {
 
   const [busy, setBusy] = useState(true);
@@ -99,12 +102,14 @@ const IonicApp: React.FC<IonicAppProps> = ({
       }
       setBusy(false);
       getUserPreference();
+      getSessionData();
     });
   }, [
       setIsLoggedIn,
       setDisplayName,
       setPhotoURL,
-      getUserPreference
+      getUserPreference,
+      getSessionData,
     ]);
 
   return (
@@ -143,7 +148,8 @@ const IonicAppConnected = connect<{}, StateProps, DispatchProps>({
   mapStateToProps: (state) => ({
     darkMode: state.user.darkMode,
   }),
-  mapDispatchToProps: { 
+  mapDispatchToProps: {
+    getSessionData,
     getUserPreference,
     setIsLoggedIn,
     setDisplayName,
