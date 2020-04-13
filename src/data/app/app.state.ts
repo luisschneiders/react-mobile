@@ -1,11 +1,12 @@
-import { combineReducers } from '../data/combineReducers';
-import { sessionsReducer } from '../data/sessions/sessions.reducer';
-import { userReducer } from '../data/user/user.reducer';
+import { combineReducers } from '../combineReducers';
+import { sessionsReducer } from '../sessions/sessions.reducer';
+import { userReducer } from '../user/user.reducer';
 
 export const initialState: AppState = {
   data: {
     loading: false,
-    menuEnabled: true
+    menuEnabled: true,
+    news: null,
   },
   user: {
     darkMode: false,
