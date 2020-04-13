@@ -1,4 +1,4 @@
-import { setDarkModeData, getUserData } from '../dataStorage';
+import { setDarkModeData, loadUserData } from '../user/data';
 import { ActionType } from '../../util/types';
 import { UserState } from './user.state';
 
@@ -32,7 +32,7 @@ export const setPhotoURL = (photoURL?: string | null | undefined) => async (disp
 }
 
 export const getUserPreference = () => async (dispatch: React.Dispatch<any>) => {
-  const data = await getUserData();
+  const data = await loadUserData();
   dispatch(setUserPreference(data));
 }
 

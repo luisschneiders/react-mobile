@@ -1,6 +1,6 @@
 
 import React, { createContext, useReducer } from 'react';
-import { initialState, AppState, reducers } from './app.state'
+import { initialState, AppState, reducers } from '../data/app/app.state'
 
 export interface AppContextState {
   state: AppState;

@@ -1,7 +1,7 @@
 import React, { useContext, useMemo } from 'react';
 import { AppContext } from '../app/AppContext';
 import { DispatchObject } from '../util/types';
-import { AppState } from '../app/app.state';
+import { AppState } from './app/app.state';
 
 interface ConnectParams<TOwnProps, TStateProps, TDispatchProps> {
   mapStateToProps?: (state: AppState, props: TOwnProps) => TStateProps,
