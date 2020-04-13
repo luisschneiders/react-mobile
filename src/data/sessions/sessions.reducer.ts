@@ -6,5 +6,8 @@ export const sessionsReducer = (state: SessionsState, action: SessionsActions): 
     case 'SET_MENU_ENABLED': {
       return { ...state, menuEnabled: action.menuEnabled };
     }
+    case 'SET_SESSION_DATA': {
+      return { ...state, ...action.data };
+    }
   }
 }
