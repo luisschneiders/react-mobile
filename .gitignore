@@ -12,6 +12,7 @@
 /build
 /ios
 /www
+/public/assets
 
 # misc
 .DS_Store
@@ -27,4 +28,4 @@ yarn-debug.log*
 yarn-error.log*
 
 # local development
-src/data/api/local
+/src/data/api/local
