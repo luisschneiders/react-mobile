@@ -79,7 +79,7 @@ const Register: React.FC<RegisterProps> = ({
       <IonLoading message="Please wait..." duration={0} isOpen={busy}></IonLoading>
       <IonContent className="ion-padding">
         <div className="login-logo">
-          <img src="assets/img/appicon.svg" alt="Login" />
+          <img src="assets/img/logo2.svg" alt="Logo"/>
         </div>
         <form noValidate onSubmit={register}>
           <IonList>
