@@ -30,11 +30,11 @@ const GroupList: React.FC<ContainerProps> = ({data}) => {
             {group.map((item: any, index: number) => (
               <IonItem key={`group-item-${index}`}>
                 <IonThumbnail slot="start">
-                  <IonImg src={item.src} alt={item.alt}/>
+                  <IonImg src={item.image} alt={item.alt}/>
                 </IonThumbnail>
                 <IonLabel>
-                  <h2>{item.h2}</h2>
-                  <p>{item.p}</p>
+                  <h2>{item.headline}</h2>
+                  <p>{item.summary}</p>
                 </IonLabel>
               </IonItem>
             ))}

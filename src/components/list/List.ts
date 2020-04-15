@@ -1,8 +1,8 @@
 export interface List {
   category: string;
   id: number;
-  src: string;
+  image: string;
   alt: string;
-  h2: string;
-  p: string;
+  headline: string;
+  summary: string;
 }
