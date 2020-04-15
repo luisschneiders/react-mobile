@@ -55,6 +55,8 @@ import Account from './pages/account/Account';
 import { getAvatar } from './util/getAvatar';
 import * as ROUTES  from './constants/Routes';
 import { getSessionData } from './data/sessions/sessions.actions';
+import Welcome from './pages/welcome/Welcome';
+import HomeOrWelcome from './components/HomeOrWelcome';
 
 const App: React.FC = () => {
   return (
@@ -119,12 +121,13 @@ const IonicApp: React.FC<IonicAppProps> = ({
                 <IonSplitPane contentId="main">
                   <Menu />
                   <IonRouterOutlet id="main">
-                    <Route path='/' render={() => <Redirect to={ROUTES.LOGIN} />} exact={true} />
+                    {/* <Route path='/' render={() => <Redirect to={ROUTES.LOGIN} />} exact={true} /> */}
                     <Route path={ROUTES.TABS} component={MainTabs} />
                     <Route path={ROUTES.ACCOUNT} component={Account} exact={true} />
                     <Route path={ROUTES.HOME} component={Home} exact={true} />
                     <Route path={ROUTES.LOGIN} component={Login} exact={true} />
                     <Route path={ROUTES.REGISTER} component={Register} exact={true} />
+                    <Route path={ROUTES.WELCOME} component={Welcome} exact={true} />
                     <Route path={ROUTES.LOGOUT} render={() => {
                       logoutUser().then(() => {
                         toast('Successfully logged out!', ToastStatus.DEFAULT);
@@ -134,6 +137,7 @@ const IonicApp: React.FC<IonicAppProps> = ({
                       });
                       return <Redirect to={ROUTES.LOGIN} />
                     }} />
+                    <Route path='/' component={HomeOrWelcome} exact={true} />
                   </IonRouterOutlet>
                 </IonSplitPane>
               </IonReactRouter>

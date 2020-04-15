@@ -11,3 +11,4 @@ export const TABS = '/tabs';
 export const TAB1 = `${TABS}/tab1`;
 export const TAB2 = `${TABS}/tab2`;
 export const TAB3 = `${TABS}/tab3`;
+export const WELCOME = '/welcome';
