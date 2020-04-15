@@ -98,7 +98,7 @@ const IonicApp: React.FC<IonicAppProps> = ({
         // window.history.replaceState({}, '', ROUTES.TAB1);
       } else {
         setIsLoggedIn(false);
-        window.history.replaceState({}, '', '/');
+        // window.history.replaceState({}, '', '/');
       }
       setBusy(false);
       getUserPreference();
