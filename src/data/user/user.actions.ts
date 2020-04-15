@@ -1,4 +1,4 @@
-import { setDarkModeData, loadUserData } from '../user/data';
+import { setDarkModeData, loadUserData, setHasSeenWelcomeData } from '../user/data';
 import { ActionType } from '../../util/types';
 import { UserState } from './user.state';
 
@@ -15,19 +15,27 @@ export const setDarkMode = (darkMode: boolean) => async (dispatch: React.Dispatc
    type: 'SET_DARK_MODE',
    darkMode
  } as const);
-};
+}
 
 export const setDisplayName = (displayName?: string | null | undefined) => async (dispatch: React.Dispatch<any>) => {
   return ({
     type: 'SET_DISPLAY_NAME',
     displayName
   } as const);
-}; 
+}
 
 export const setPhotoURL = (photoURL?: string | null | undefined) => async (dispatch: React.Dispatch<any>) => {
   return ({
     type: 'SET_PHOTO_URL',
     photoURL
+  } as const);
+}
+
+export const setHasSeenWelcome = (hasSeenWelcome: boolean) => async (dispatch: React.Dispatch<any>) => {
+  await setHasSeenWelcomeData(hasSeenWelcome)
+  return ({
+    type: 'SET_HAS_SEEN_WELCOME',
+    hasSeenWelcome
   } as const);
 }
 
@@ -46,4 +54,5 @@ export type UserActions =
   | ActionType<typeof setDarkMode>
   | ActionType<typeof setDisplayName>
   | ActionType<typeof setPhotoURL>
+  | ActionType<typeof setHasSeenWelcome>
   | ActionType<typeof setUserPreference>;

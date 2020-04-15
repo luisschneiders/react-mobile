@@ -4,4 +4,5 @@ export interface UserState {
   loading: boolean;
   displayName?: string | null | undefined;
   photoURL?: string | null | undefined;
+  hasSeenWelcome: boolean;
 }
