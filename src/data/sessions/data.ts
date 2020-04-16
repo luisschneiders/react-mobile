@@ -1,8 +1,8 @@
-import { getNews } from "../api/Finnhub";
+import { getNews, getNewsLocal } from "../api/Finnhub";
 import { NewsType } from "../../enum/NewsType";
 import { News } from "../../models/News";
 
-const newsData = getNews(NewsType.GENERAL, 10);
+const newsData = getNewsLocal(NewsType.GENERAL, 10);
 
 export const loadSessionData = async () => {
   const response: any = await Promise.all([

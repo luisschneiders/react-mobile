@@ -10,6 +10,7 @@ export const initialState: AppState = {
   },
   user: {
     darkMode: false,
+    hasSeenWelcome: false,
     isLoggedin: false,
     loading: false
   }
