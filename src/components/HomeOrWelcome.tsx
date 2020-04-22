@@ -8,7 +8,7 @@ interface StateProps {
 }
 
 const HomeOrWelcome: React.FC<StateProps> = ({ hasSeenWelcome }) => {
-  return hasSeenWelcome ? <Redirect to={ROUTES.REGISTER} /> : <Redirect to={ROUTES.WELCOME} />
+  return hasSeenWelcome ? <Redirect to={ROUTES.LOGIN} /> : <Redirect to={ROUTES.WELCOME} />
 };
 
 export default connect<{}, StateProps, {}>({
