@@ -29,3 +29,6 @@ yarn-error.log*
 
 # local development
 /src/data/api/local
+
+# Firebase
+.firebaserc
