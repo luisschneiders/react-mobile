@@ -28,10 +28,36 @@ The app uses React Hooks API, which lets you use state and other React features 
 ### Firebase ###
 Firebase gives you the tools to develop high-quality apps. For more information about Firebase, please visit Google Firebase Documentation: `https://firebase.google.com/docs/`
 
-* Install Firebase `npm i firebase --save`
-* Install firebase types `npm i @types/firebase --save-dev`
+* Install Firebase `npm install firebase --save`
+* Install firebase types `npm install @types/firebase --save-dev`
 
 Information about how to configure the firebase connection is also available at [Google Firebase Documentation](https://firebase.google.com/docs/)
+
+### Cloud Functions ###
+To set up Cloud Functions in Firebase:
+* Install Firebase Functions and Firebase Admin `npm install firebase-functions@latest firebase-admin@latest --save`
+
+The complete steps to install and setup Cloud Functions can be found in the docs: `https://firebase.google.com/docs/functions/get-started`.
+
+The structure of Cloud Functions will be as follow:
+```
+react-mobile
+ +- .firebaserc    # Hidden file that helps you quickly switch between
+ |                 # projects with `firebase use`
+ |
+ +- firebase.json  # Describes properties for your project
+ |
+ +- functions/     # Directory containing all your functions code
+      |
+      +- .eslintrc.json  # Optional file containing rules for JavaScript linting.
+      |
+      +- package.json  # npm package file describing your Cloud Functions code
+      |
+      +- index.js      # main source file for your Cloud Functions code
+      |
+      +- node_modules/ # directory where your dependencies (declared in
+                       # package.json) are installed
+```
 
 ### Capacitor ###
 Invoke Native SDKs on iOS, Android, Electron, and the Web with one code base. Optimized for Ionic Framework apps, or use with any web app framework.
