@@ -3,7 +3,7 @@ import { toast } from '../../components/toast/Toast';
 import { ToastStatus } from '../../enum/ToastStatus';
 import { NewsType } from '../../enum/NewsType';
 import { List } from '../../components/list/List';
-import { News, Category } from '../../models/News';
+import { News, NewsCategory } from '../../models/News';
 import { groupBy } from '../../util/groupBy';
 
 // To use this one...
@@ -26,7 +26,7 @@ export function getNews(category: string = NewsType.GENERAL, minId: number = 10)
         });
         // Because the original data is not grouped by 'category',
         // we need to do it here.
-        const groups: Category[] = [];
+        const groups: NewsCategory[] = [];
         const customData: any = groupBy(customList, 'category');
         Object.keys(customData).forEach((key: string) => {
           groups.push(customData[key]);
@@ -65,7 +65,7 @@ export function getNewsLocal(category: string = NewsType.GENERAL, minId: number 
 
     // Because the original data is not grouped by 'category',
     // we need to do it here.
-    const groups: Category[] = [];
+    const groups: NewsCategory[] = [];
     const customData: any = groupBy(customList, 'category');
     Object.keys(customData).forEach((key: string) => {
       groups.push(customData[key]);

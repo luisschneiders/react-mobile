@@ -1,8 +1,8 @@
 export interface News {
-  groups: Category[];
+  groups: NewsCategory[];
 }
 
-export interface Category {
+export interface NewsCategory {
   category: string;
   datetime: number;
   headline: string;
