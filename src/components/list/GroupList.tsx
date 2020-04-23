@@ -2,19 +2,18 @@ import React from 'react';
 import {
   IonLabel,
   IonList,
-  IonItem,
-  IonThumbnail,
-  IonImg,
   IonItemGroup,
   IonItemDivider,
   IonText
 } from '@ionic/react';
+import LsListItemThumbnail from './ListItemThumbnail';
+import { List } from './List';
 
 interface ContainerProps {
   data: any;
 }
 
-const GroupList: React.FC<ContainerProps> = ({data}) => {
+const LsGroupList: React.FC<ContainerProps> = ({data}) => {
   return (
     <>
       <IonList>
@@ -27,16 +26,11 @@ const GroupList: React.FC<ContainerProps> = ({data}) => {
                 </IonText>
               </IonLabel>
             </IonItemDivider>
-            {group.map((item: any, index: number) => (
-              <IonItem key={`group-item-${index}`}>
-                <IonThumbnail slot="start">
-                  <IonImg src={item.image} alt={item.alt}/>
-                </IonThumbnail>
-                <IonLabel>
-                  <h2>{item.headline}</h2>
-                  <p>{item.summary}</p>
-                </IonLabel>
-              </IonItem>
+            {group.map((listItem: List, listIndex: number) => (
+              <LsListItemThumbnail
+                index={index}
+                listItem={listItem}
+                key={`group-${index}-${listIndex}`} />
             ))}
           </IonItemGroup>
         ))}
@@ -45,4 +39,4 @@ const GroupList: React.FC<ContainerProps> = ({data}) => {
   );
 };
 
-export default GroupList;
+export default LsGroupList;

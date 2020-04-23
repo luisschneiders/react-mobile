@@ -15,7 +15,7 @@ import {
   IonThumbnail,
 } from '@ionic/react';
 import './Tab1.scss';
-import GroupList from '../../components/list/GroupList';
+import LsGroupList from '../../components/list/GroupList';
 import { connect } from '../../data/connect';
 import { News } from '../../models/News';
 
@@ -66,7 +66,7 @@ const Tab1: React.FC<Tab1Props> = ({ news }) => {
             </IonLabel>
           </IonItem>
         </IonList>}
-        {items && <GroupList data={items}></GroupList>}
+        {items && <LsGroupList data={items}></LsGroupList>}
       </IonContent>
     </IonPage>
   );

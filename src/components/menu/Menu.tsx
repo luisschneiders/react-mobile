@@ -34,7 +34,7 @@ interface DispatchProps {
 
 interface MenuProps extends RouteComponentProps, StateProps, DispatchProps {}
 
-const Menu: React.FC<MenuProps> = ({darkMode, history, isAuthenticated, setDarkMode, menuEnabled}) => {
+const LsMenu: React.FC<MenuProps> = ({darkMode, history, isAuthenticated, setDarkMode, menuEnabled}) => {
   const location = useLocation();
 
   function renderMenuItems(pages: any[], menu: string) {
@@ -96,5 +96,5 @@ export default connect<{}, StateProps, {}>({
   mapDispatchToProps: ({
     setDarkMode
   }),
-  component: withRouter(Menu)
+  component: withRouter(LsMenu)
 });

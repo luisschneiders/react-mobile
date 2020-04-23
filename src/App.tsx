@@ -43,12 +43,12 @@ import {
   getUserPreference
 } from './data/user/user.actions';
 
-import MainTabs from './components/tabs/MainTabs';
+import LsMainTabs from './components/tabs/MainTabs';
 import Home from './pages/home/Home';
 import Login from './pages/login/Login';
 import Register from './pages/register/Register';
 
-import Menu from './components/menu/Menu';
+import LsMenu from './components/menu/Menu';
 import { toast } from './components/toast/Toast';
 import { ToastStatus } from './enum/ToastStatus';
 import Account from './pages/account/Account';
@@ -119,10 +119,10 @@ const IonicApp: React.FC<IonicAppProps> = ({
       { busy ? <div className="container-spinner"><IonSpinner></IonSpinner></div> :
               <IonReactRouter>
                 <IonSplitPane contentId="main">
-                  <Menu />
+                  <LsMenu />
                   <IonRouterOutlet id="main">
                     {/* <Route path='/' render={() => <Redirect to={ROUTES.LOGIN} />} exact={true} /> */}
-                    <Route path={ROUTES.TABS} component={MainTabs} />
+                    <Route path={ROUTES.TABS} component={LsMainTabs} />
                     <Route path={ROUTES.ACCOUNT} component={Account} exact={true} />
                     <Route path={ROUTES.HOME} component={Home} exact={true} />
                     <Route path={ROUTES.LOGIN} component={Login} exact={true} />
