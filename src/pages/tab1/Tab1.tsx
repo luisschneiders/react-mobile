@@ -18,9 +18,10 @@ import './Tab1.scss';
 import LsGroupList from '../../components/list/GroupList';
 import { connect } from '../../data/connect';
 import { News } from '../../models/News';
+import * as selectors from '../../data/news/news.selectors';
 
 interface StateProps {
-  news: News,
+  news: News | null,
 }
 interface Tab1Props extends StateProps {}
 
@@ -74,7 +75,7 @@ const Tab1: React.FC<Tab1Props> = ({ news }) => {
 
 export default connect<{}, StateProps, {}>({
   mapStateToProps: (state) => ({
-    news: state.data.news,
+    news: selectors.getNewsByGroup(state)
   }),
-  component: Tab1
+  component: React.memo(Tab1)
 });
