@@ -52,7 +52,7 @@ const LsMainTabs: React.FC<StateProps> = ({isAuthenticated}) => {
 
 export default connect<{}, StateProps, {}>({
   mapStateToProps: (state) => ({
-    isAuthenticated: state.user.isLoggedin,
+    isAuthenticated: state.userReducer.isLoggedin,
   }),
   component: LsMainTabs
 });

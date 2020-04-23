@@ -141,8 +141,8 @@ const Account: React.FC<AccountProps> = ({
 
 export default connect<OwnProps, StateProps, DispatchProps>({
   mapStateToProps: (state) => ({
-    displayName: state.user.displayName,
-    photoURL: state.user.photoURL,
+    displayName: state.userReducer.displayName,
+    photoURL: state.userReducer.photoURL,
   }),
   mapDispatchToProps: {
     setDisplayName,

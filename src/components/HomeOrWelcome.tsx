@@ -13,7 +13,7 @@ const HomeOrWelcome: React.FC<StateProps> = ({ hasSeenWelcome }) => {
 
 export default connect<{}, StateProps, {}>({
   mapStateToProps: (state) => ({
-    hasSeenWelcome: state.user.hasSeenWelcome
+    hasSeenWelcome: state.userReducer.hasSeenWelcome
   }),
   component: HomeOrWelcome
 });

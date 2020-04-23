@@ -1,24 +1,33 @@
 import { combineReducers } from '../combineReducers';
 import { sessionsReducer } from '../sessions/sessions.reducer';
 import { userReducer } from '../user/user.reducer';
+import { newsReducer } from '../news/news.reducer';
 
 export const initialState: AppState = {
-  data: {
+  // An example of reducer
+  // exampleReducer: {
+  //   example: null
+  // }
+  sessionsReducer: {
     loading: false,
     menuEnabled: true,
-    news: null,
   },
-  user: {
+  userReducer: {
     darkMode: false,
     hasSeenWelcome: false,
     isLoggedin: false,
     loading: false
+  },
+  newsReducer: {
+    news: null
   }
 };
 
 export const reducers = combineReducers({
-  data: sessionsReducer,
-  user: userReducer
+  // exampleReducer: exampleReducer,
+  sessionsReducer,
+  userReducer,
+  newsReducer,
 });
 
 
