@@ -3,8 +3,6 @@ import { toast } from '../../components/toast/Toast';
 import { ToastStatus } from '../../enum/ToastStatus';
 import { NewsType } from '../../enum/NewsType';
 import { List } from '../../components/list/List';
-import { News, NewsCategory } from '../../models/News';
-import { groupBy } from '../../util/groupBy';
 
 // To use this one...
 export function getNews(category: string = NewsType.GENERAL, minId: number = 10) {
@@ -24,19 +22,8 @@ export function getNews(category: string = NewsType.GENERAL, minId: number = 10)
           })
           customList.push(list);
         });
-        // Because the original data is not grouped by 'category',
-        // we need to do it here.
-        const groups: NewsCategory[] = [];
-        const customData: any = groupBy(customList, 'category');
-        Object.keys(customData).forEach((key: string) => {
-          groups.push(customData[key]);
-        });
 
-        // Assign the new array group to the News
-        const news: News = Object.assign({}, {
-          groups
-        });
-        return news;
+        return customList;
       },
       (error) => {
         toast(error.message, ToastStatus.ERROR, 4000);
@@ -63,21 +50,8 @@ export function getNewsLocal(category: string = NewsType.GENERAL, minId: number 
       customList.push(list);
     });
 
-    // Because the original data is not grouped by 'category',
-    // we need to do it here.
-    const groups: NewsCategory[] = [];
-    const customData: any = groupBy(customList, 'category');
-    Object.keys(customData).forEach((key: string) => {
-      groups.push(customData[key]);
-    });
-
-    // Assign the new array group to the News
-    const news: News = Object.assign({}, {
-      groups
-    });
-
     if (customList) {
-      resolve(news);
+      resolve(customList);
     } else {
       resolve(null);
     }

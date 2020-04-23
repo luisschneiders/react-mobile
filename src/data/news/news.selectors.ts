@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 import { AppState } from '../app/app.state';
 import { NewsCategory, News } from '../../models/News';
-import { List } from '../../components/list/List';
+import { groupBy } from '../../util/groupBy';
 
 const getData = (state: AppState) => state.newsReducer.news;
 
@@ -18,10 +18,26 @@ export const getNews = createSelector(
 
 export const getNewsByGroup = createSelector(
   getData,
-  (news: News) => {
+  (data: any[]) => {
+    if (!data) {
+      return null;
+    }
 
+    // Because the original data is not grouped by 'category',
+    // we need to do it here.
+    const groups: NewsCategory[] = [];
+    const customData: any = groupBy(data, 'category');
+    Object.keys(customData).forEach((key: string) => {
+      groups.push(customData[key]);
+    });
+
+    // Assign the new array group to the News
+    const news: News = Object.assign({}, {
+      groups
+    });
+    return news;
   }
-)
+);
 
 export const getNewsById = createSelector(
   getData, getIdParam,
