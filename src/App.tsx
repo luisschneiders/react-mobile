@@ -42,21 +42,22 @@ import {
   setPhotoURL,
   getUserPreference
 } from './data/user/user.actions';
+import { getNewsData } from './data/news/news.actions';
 
 import LsMainTabs from './components/tabs/MainTabs';
+import LsMenu from './components/menu/Menu';
+import { toast } from './components/toast/Toast';
+import HomeOrWelcome from './components/HomeOrWelcome';
+
 import Home from './pages/home/Home';
 import Login from './pages/login/Login';
 import Register from './pages/register/Register';
-
-import LsMenu from './components/menu/Menu';
-import { toast } from './components/toast/Toast';
-import { ToastStatus } from './enum/ToastStatus';
 import Account from './pages/account/Account';
+import Welcome from './pages/welcome/Welcome';
+
+import { ToastStatus } from './enum/ToastStatus';
 import { getAvatar } from './util/getAvatar';
 import * as ROUTES  from './constants/Routes';
-import { getSessionData } from './data/sessions/sessions.actions';
-import Welcome from './pages/welcome/Welcome';
-import HomeOrWelcome from './components/HomeOrWelcome';
 
 const App: React.FC = () => {
   return (
@@ -75,7 +76,7 @@ interface DispatchProps {
   setDisplayName: typeof setDisplayName;
   setPhotoURL: typeof setPhotoURL;
   getUserPreference: typeof getUserPreference;
-  getSessionData: typeof getSessionData;
+  getNewsData: typeof getNewsData;
 }
 
 interface IonicAppProps extends StateProps, DispatchProps { }
@@ -86,7 +87,7 @@ const IonicApp: React.FC<IonicAppProps> = ({
     setDisplayName,
     setPhotoURL,
     getUserPreference,
-    getSessionData
+    getNewsData,
   }) => {
 
   const [busy, setBusy] = useState(true);
@@ -104,14 +105,14 @@ const IonicApp: React.FC<IonicAppProps> = ({
       }
       setBusy(false);
       getUserPreference();
-      getSessionData();
+      getNewsData();
     });
   }, [
       setIsLoggedIn,
       setDisplayName,
       setPhotoURL,
       getUserPreference,
-      getSessionData,
+      getNewsData,
     ]);
 
   return (
@@ -150,10 +151,10 @@ export default App;
 
 const IonicAppConnected = connect<{}, StateProps, DispatchProps>({
   mapStateToProps: (state) => ({
-    darkMode: state.user.darkMode,
+    darkMode: state.userReducer.darkMode,
   }),
   mapDispatchToProps: {
-    getSessionData,
+    getNewsData,
     getUserPreference,
     setIsLoggedIn,
     setDisplayName,
