@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import {
   IonLabel,
   IonList,
@@ -7,26 +7,33 @@ import {
   IonImg,
   IonItemGroup,
   IonItemDivider,
-  IonText
+  IonText,
+  IonItemSliding
 } from '@ionic/react';
+import * as ROUTES from '../../constants/Routes';
 import { List } from './List';
 
 interface ContainerProps {
-  listItem: List;
+  list: List;
   index: number;
 }
 
-const LsListItemThumbnail: React.FC<ContainerProps> = ({listItem, index}) => {
+const LsListItemThumbnail: React.FC<ContainerProps> = ({list, index}) => {
+  const ionItemSlidingRef = useRef<HTMLIonItemSlidingElement>(null);
+
   return (
-    <IonItem key={`group-item-${index}`} routerLink={`/tabs/tab1/${listItem.id}`}>
-    <IonThumbnail slot="start">
-      <IonImg src={listItem.image} alt={listItem.alt}/>
-    </IonThumbnail>
-    <IonLabel>
-      <h2>{listItem.headline}</h2>
-      <p>{listItem.summary}</p>
-    </IonLabel>
-  </IonItem>  );
+    <IonItemSliding ref={ionItemSlidingRef}>
+      <IonItem key={`group-item-${index}`} routerLink={`${ROUTES.TAB1}/${list.id}`}>
+      <IonThumbnail slot="start">
+        <IonImg src={list.image} alt={list.alt}/>
+      </IonThumbnail>
+      <IonLabel>
+        <h2>{list.headline}</h2>
+        <p>{list.summary}</p>
+      </IonLabel>
+    </IonItem>
+  </IonItemSliding>
+  );
 };
 
-export default LsListItemThumbnail;
+export default React.memo(LsListItemThumbnail);

@@ -29,7 +29,7 @@ const LsGroupList: React.FC<ContainerProps> = ({data}) => {
             {group.map((listItem: List, listIndex: number) => (
               <LsListItemThumbnail
                 index={index}
-                listItem={listItem}
+                list={listItem}
                 key={`group-${index}-${listIndex}`} />
             ))}
           </IonItemGroup>
