@@ -1,11 +1,15 @@
 import * as firebase from 'firebase/app';
+import 'firebase/firestore';
 import 'firebase/auth';
 import { toast } from '../../components/toast/Toast';
 import { Firebase } from '../../credentials/Firebase';
 import { ToastStatus } from '../../enum/ToastStatus';
 import { UserProfile } from '../../models/UserProfile';
+import { NewsCategory } from '../../models/News';
+import { NEWS_CATEGORY } from '../../constants/Firestore';
 
 firebase.initializeApp(Firebase);
+const db = firebase.firestore();
 
 export async function loginUser(email: string, password: string) {
   try {
@@ -57,3 +61,14 @@ export async function updateProfile(profile: UserProfile) {
     return false;
   }
 }
+
+export async function addNewsFirestore(news: NewsCategory | undefined) {
+  return db.collection(NEWS_CATEGORY)
+    .doc(news?.id.toString())
+    .set(Object.assign({}, news))
+    .then((response: any) => {
+      return response;
+    }).catch((error) => {
+      toast(error, ToastStatus.ERROR, 4000);
+    });
+};

@@ -1,6 +1,6 @@
 import { ActionType } from '../../util/types';
 import { News, NewsCategory } from '../../models/News';
-import { loadNewsData } from './data';
+import { loadNewsData, setAddNewsData } from './data';
 import { NewsState } from './news.state';
 
 export const getNewsData = () => async (dispatch: React.Dispatch<any>) => {
@@ -14,6 +14,7 @@ export const setNewsData = (data: Partial<NewsState>) => ({
 } as const);
 
 export const setAddNews = (news: NewsCategory | undefined) => async (dispatch: React.Dispatch<any>) => {
+  await setAddNewsData(news);
   return ({
     type: 'SET_NEWS_ADD',
     news

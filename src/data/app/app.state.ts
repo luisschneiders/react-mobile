@@ -19,7 +19,8 @@ export const initialState: AppState = {
     loading: false
   },
   newsReducer: {
-    news: null
+    news: null,
+    newsCategory: null,
   }
 };
 

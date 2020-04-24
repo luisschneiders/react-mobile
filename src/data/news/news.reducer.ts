@@ -6,7 +6,7 @@ export const newsReducer = (state: NewsState, action: NewsActions): NewsState =>
     case 'SET_NEWS_ADD': 
     case 'SET_NEWS_REMOVE': 
     {
-      return { ...state, news: action.news };
+      return { ...state, newsCategory: action.news };
     }
     case 'SET_NEWS_DATA': {
       return { ...state, ...action.data };

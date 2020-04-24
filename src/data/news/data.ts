@@ -1,6 +1,7 @@
 import { getNews, getNewsLocal } from '../api/Finnhub';
 import { NewsType } from '../../enum/NewsType';
-import { News } from '../../models/News';
+import { News, NewsCategory } from '../../models/News';
+import { addNewsFirestore} from '../api/Firebase';
 
 const newsData = getNewsLocal(NewsType.GENERAL, 10);
 
@@ -14,4 +15,8 @@ export const loadNewsData = async () => {
     news
   }
   return data;
-}
+};
+
+export const setAddNewsData = async (news: NewsCategory | undefined) => {
+  return addNewsFirestore(news);
+};
