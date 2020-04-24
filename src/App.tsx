@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import {
   Redirect,
-  Route
+  Route,
 } from 'react-router-dom';
 import {
   IonApp,
@@ -122,7 +122,7 @@ const IonicApp: React.FC<IonicAppProps> = ({
                 <IonSplitPane contentId="main">
                   <LsMenu />
                   <IonRouterOutlet id="main">
-                    {/* <Route path='/' render={() => <Redirect to={ROUTES.LOGIN} />} exact={true} /> */}
+                    <Route path='/' component={HomeOrWelcome} exact={true} />
                     <Route path={ROUTES.TABS} component={LsMainTabs} />
                     <Route path={ROUTES.ACCOUNT} component={Account} exact={true} />
                     <Route path={ROUTES.HOME} component={Home} exact={true} />
@@ -138,7 +138,6 @@ const IonicApp: React.FC<IonicAppProps> = ({
                       });
                       return <Redirect to={ROUTES.LOGIN} />
                     }} />
-                    <Route path='/' component={HomeOrWelcome} exact={true} />
                   </IonRouterOutlet>
                 </IonSplitPane>
               </IonReactRouter>

@@ -1,10 +1,10 @@
-import React from "react";
-import { setDarkMode } from "../../data/user/user.actions"
+import React from 'react';
+import { setDarkMode } from '../../data/user/user.actions'
 import {
   RouteComponentProps,
   useLocation,
   withRouter
-} from "react-router"
+} from 'react-router'
 import {
   IonMenuToggle,
   IonItem,
@@ -14,13 +14,13 @@ import {
   IonContent,
   IonList,
   IonListHeader,
-  IonToggle } from "@ionic/react";
+  IonToggle } from '@ionic/react';
 import './Menu.scss'
 import {
   moonOutline, sunnyOutline,
-} from "ionicons/icons";
-import { connect } from "../../data/connect";
-import { appPages } from "../../app/AppPages";
+} from 'ionicons/icons';
+import { connect } from '../../data/connect';
+import { appPages } from '../../app/AppPages';
 
 interface StateProps {
   darkMode: boolean;

@@ -1,13 +1,9 @@
 import React, { useRef } from 'react';
 import {
   IonLabel,
-  IonList,
   IonItem,
   IonThumbnail,
   IonImg,
-  IonItemGroup,
-  IonItemDivider,
-  IonText,
   IonItemSliding
 } from '@ionic/react';
 import * as ROUTES from '../../constants/Routes';

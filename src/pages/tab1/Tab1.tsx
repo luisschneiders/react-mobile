@@ -10,9 +10,6 @@ import {
   IonList,
   IonLoading,
   IonItem,
-  IonLabel,
-  IonImg,
-  IonThumbnail,
 } from '@ionic/react';
 import './Tab1.scss';
 import LsGroupList from '../../components/list/GroupList';
@@ -29,7 +26,6 @@ const Tab1: React.FC<Tab1Props> = ({ news }) => {
   const [isError, setError] = useState<boolean>(false);
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
   const [items, setItems] = useState<any>();
-  const noNews: string = 'assets/img/no-news.jpg';
 
   useEffect(() => {
     setIsLoaded(true);
@@ -58,14 +54,7 @@ const Tab1: React.FC<Tab1Props> = ({ news }) => {
       <IonLoading message="Fetching news..." duration={0} isOpen={isLoaded}></IonLoading>
       <IonContent>
         {isError && <IonList>
-          <IonItem>
-            <IonThumbnail slot="start">
-              <IonImg src={noNews} alt='no news' />
-            </IonThumbnail>
-            <IonLabel>
-              <h2>No news found!</h2>
-            </IonLabel>
-          </IonItem>
+          <p className="ion-text-center">No news found! 😢</p>
         </IonList>}
         {items && <LsGroupList data={items}></LsGroupList>}
       </IonContent>
