@@ -17,14 +17,14 @@ export const setDarkMode = (darkMode: boolean) => async (dispatch: React.Dispatc
  } as const);
 }
 
-export const setDisplayName = (displayName?: string | null | undefined) => async (dispatch: React.Dispatch<any>) => {
+export const setDisplayName = (displayName: string | null | undefined) => async (dispatch: React.Dispatch<any>) => {
   return ({
     type: 'SET_DISPLAY_NAME',
     displayName
   } as const);
 }
 
-export const setPhotoURL = (photoURL?: string | null | undefined) => async (dispatch: React.Dispatch<any>) => {
+export const setPhotoURL = (photoURL: string | null | undefined) => async (dispatch: React.Dispatch<any>) => {
   return ({
     type: 'SET_PHOTO_URL',
     photoURL

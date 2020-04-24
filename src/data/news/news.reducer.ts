@@ -3,7 +3,9 @@ import { NewsState } from './news.state';
 
 export const newsReducer = (state: NewsState, action: NewsActions): NewsState => {
   switch (action.type) {
-    case 'SET_NEWS': {
+    case 'SET_NEWS_ADD': 
+    case 'SET_NEWS_REMOVE': 
+    {
       return { ...state, news: action.news };
     }
     case 'SET_NEWS_DATA': {

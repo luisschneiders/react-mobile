@@ -1,5 +1,5 @@
 import { ActionType } from '../../util/types';
-import { News } from '../../models/News';
+import { News, NewsCategory } from '../../models/News';
 import { loadNewsData } from './data';
 import { NewsState } from './news.state';
 
@@ -13,11 +13,21 @@ export const setNewsData = (data: Partial<NewsState>) => ({
   data
 } as const);
 
-export const setNews = (news: News) => ({
-  type: 'SET_NEWS',
-  news
-} as const);
+export const setAddNews = (news: NewsCategory | undefined) => async (dispatch: React.Dispatch<any>) => {
+  return ({
+    type: 'SET_NEWS_ADD',
+    news
+  } as const);
+};
+
+export const setRemoveNews = (news: NewsCategory | undefined) => async (dispatch: React.Dispatch<any>) => {
+  return ({
+    type: 'SET_NEWS_REMOVE',
+    news
+  } as const);
+};
 
 export type NewsActions =
   | ActionType<typeof setNewsData>
-  | ActionType<typeof setNews>
+  | ActionType<typeof setAddNews>
+  | ActionType<typeof setRemoveNews>

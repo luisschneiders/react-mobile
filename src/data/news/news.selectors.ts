@@ -18,7 +18,7 @@ export const getNews = createSelector(
 
 export const getNewsByGroup = createSelector(
   getData,
-  (data: any[]) => {
+  (data: NewsCategory[]) => {
     if (!data) {
       return null;
     }
@@ -41,7 +41,9 @@ export const getNewsByGroup = createSelector(
 
 export const getNewsById = createSelector(
   getData, getIdParam,
-  (news: any, id: number) => {
-    return news.groups.find((n: any) => n.id === id);
+  (news: NewsCategory[], id: number) => {
+    if (news && news.length > 0) {
+      return news.find((n: any) => n.id.toString() === id);
+    }
   }
 );
