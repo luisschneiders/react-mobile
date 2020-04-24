@@ -27,7 +27,7 @@ export function getNews(category: string = NewsType.GENERAL, minId: number = 10)
       },
       (error) => {
         toast(error.message, ToastStatus.ERROR, 4000);
-        return error;
+        return null;
       }
     );
 }

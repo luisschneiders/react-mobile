@@ -1,5 +1,5 @@
 import { ActionType } from '../../util/types';
-import { News, NewsCategory } from '../../models/News';
+import { NewsCategory } from '../../models/News';
 import { loadNewsData, setAddNewsData } from './data';
 import { NewsState } from './news.state';
 
