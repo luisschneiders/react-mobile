@@ -67,8 +67,9 @@ export async function addNewsFirestore(news: NewsCategory | undefined) {
     .doc(news?.id.toString())
     .set(Object.assign({}, news))
     .then((response: any) => {
-      return response;
+      return true;
     }).catch((error) => {
       toast(error, ToastStatus.ERROR, 4000);
+      return false;
     });
 };
