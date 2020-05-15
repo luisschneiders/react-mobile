@@ -1,4 +1,4 @@
-import { setDarkModeData, loadUserData, setHasSeenWelcomeData } from '../user/data';
+import { setDarkModeData, loadUserData, setHasSeenWelcomeData, setFavouriteNewsData } from '../user/data';
 import { ActionType } from '../../util/types';
 import { UserState } from './user.state';
 
@@ -39,6 +39,18 @@ export const setHasSeenWelcome = (hasSeenWelcome: boolean) => async (dispatch: R
   } as const);
 }
 
+export const setFavouriteNews = (favouriteNewsId: number[] | null | undefined) => async (dispatch: React.Dispatch<any>) => {
+  await setFavouriteNewsData(favouriteNewsId);
+  // TODO: review it
+  const data = await loadUserData();
+  dispatch(setUserPreference(data));
+
+  return ({
+    type: 'SET_FAVOURITE_NEWS',
+    favouriteNewsId
+  } as const);
+};
+
 export const getUserPreference = () => async (dispatch: React.Dispatch<any>) => {
   const data = await loadUserData();
   dispatch(setUserPreference(data));
@@ -49,10 +61,16 @@ export const setUserPreference = (data: Partial<UserState>) => ({
   data
 } as const);
 
+// export const getFavouriteNews = () => async (dispatch: React.Dispatch<any>) => {
+//   const data = await loadUserData();
+//   dispatch(setUserPreference(data));
+// }
+
 export type UserActions =
   | ActionType<typeof setIsLoggedIn>
   | ActionType<typeof setDarkMode>
   | ActionType<typeof setDisplayName>
   | ActionType<typeof setPhotoURL>
   | ActionType<typeof setHasSeenWelcome>
-  | ActionType<typeof setUserPreference>;
+  | ActionType<typeof setUserPreference>
+  | ActionType<typeof setFavouriteNews>

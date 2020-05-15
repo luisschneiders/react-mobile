@@ -15,5 +15,7 @@ export function userReducer(state: UserState, action: UserActions): UserState {
       return { ...state, photoURL: action.photoURL };
     case 'SET_USER_PREFERENCE':
       return { ...state, ...action.data };
+    case 'SET_FAVOURITE_NEWS':
+      return { ...state, favouriteNewsId: action.favouriteNewsId };
   }
 }
