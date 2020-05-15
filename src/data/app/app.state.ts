@@ -16,7 +16,8 @@ export const initialState: AppState = {
     darkMode: false,
     hasSeenWelcome: false,
     isLoggedin: false,
-    loading: false
+    loading: false,
+    favouriteNewsId: null,
   },
   newsReducer: {
     news: null,
