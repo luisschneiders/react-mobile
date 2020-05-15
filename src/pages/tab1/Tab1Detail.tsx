@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 import {
   IonHeader,
   IonToolbar,
@@ -27,36 +27,46 @@ import {
 import './Tab1Detail.scss';
 import { connect } from '../../data/connect';
 import * as ROUTES from '../../constants/Routes';
-import * as selectors from '../../data/news/news.selectors';
+import * as newsSelectors from '../../data/news/news.selectors';
+import * as userSelectors from '../../data/user/user.selectors';
 import { NewsCategory } from '../../models/News';
 import { setAddNews, setRemoveNews } from '../../data/news/news.actions';
+import { addNewsFirestore } from '../../data/api/Firebase';
+import { setFavouriteNews } from '../../data/user/user.actions';
 
 interface OwnProps extends RouteComponentProps {};
 
 interface StateProps {
-  news: NewsCategory | undefined;
+  news: NewsCategory | undefined,
+  isFavouriteNews: boolean | undefined,
 };
 
 interface DispatchProps {
   setAddNews: typeof setAddNews;
-  setRemoveNews: typeof setRemoveNews;
-}
+  // setRemoveNews: typeof setRemoveNews;
+  setFavouriteNews: typeof setFavouriteNews;
+};
 
-type Tab1DetailProps = OwnProps & StateProps & DispatchProps;
+interface Tab1DetailProps extends OwnProps, StateProps, DispatchProps {};
 
 const Tab1Detail: React.FC<Tab1DetailProps> = ({
     news,
-    setAddNews,
-    setRemoveNews,
+    setAddNews: setAddNewsAction,
+    // setRemoveNews,
+    setFavouriteNews: setFavouriteNewsAction,
+    isFavouriteNews,
   }) => {
-  const isSaved: boolean = false;
 
-  const toggleFavorite = () => {
-    isSaved ? setRemoveNews(news) : setAddNews(news);
+  const toggleSave = () => {
+    if (!isFavouriteNews) {
+      setAddNewsAction(news);
+
+      const newsId: any = news?.id;
+      setFavouriteNewsAction(newsId);
+    } else {
+      // TODO: remove favourites
+    }
   }
-
-  useEffect(() => {
-  }, []);
 
   return (
     <IonPage id="tab1-detail-page">
@@ -71,15 +81,17 @@ const Tab1Detail: React.FC<Tab1DetailProps> = ({
         <IonCard>
           <IonImg src={news?.image}></IonImg>
           <IonCardHeader>
-            <IonCardTitle color="secondary">{news?.category}</IonCardTitle>
+            <IonCardTitle
+              color="tertiary"
+              className="ion-text-capitalize">{news?.category}</IonCardTitle>
             <IonCardSubtitle>{news?.headline}</IonCardSubtitle>
           </IonCardHeader>
           <IonCardContent>
             <p>{news?.summary}</p>
             <IonItem lines="none">
               <IonButtons slot="end">
-                <IonButton onClick={() => toggleFavorite()}>
-                  {isSaved ?
+                <IonButton onClick={() => toggleSave()}>
+                  {isFavouriteNews ?
                     <IonIcon slot="icon-only" icon={heart} color="danger"></IonIcon> :
                     <IonIcon slot="icon-only" icon={heartOutline}></IonIcon>
                   }
@@ -95,11 +107,13 @@ const Tab1Detail: React.FC<Tab1DetailProps> = ({
 
 export default connect<OwnProps, StateProps, DispatchProps>({
   mapStateToProps: (state, OwnProps) => ({
-    news: selectors.getNewsById(state, OwnProps),
+    news: newsSelectors.getNewsById(state, OwnProps),
+    isFavouriteNews: userSelectors.getFavouriteNewsId(state, OwnProps),
   }),
   mapDispatchToProps: {
     setAddNews,
-    setRemoveNews
+    // setRemoveNews,
+    setFavouriteNews,
   },
   component: withRouter(Tab1Detail)
 });
