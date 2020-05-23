@@ -33,6 +33,33 @@ Firebase gives you the tools to develop high-quality apps. For more information 
 
 Information about how to configure the firebase connection is also available at [Google Firebase Documentation](https://firebase.google.com/docs/)
 
+#### Deploying ####
+Firebase hosting provides many benefits for Progressive Web Apps, including fast response times thanks to CDNs, HTTPS enabled by default, and support for HTTP2 push. 
+First, if not already available, [create the project](https://console.firebase.google.com/) in Firebase.
+
+Next, in a Terminal, install the Firebase CLI:
+* `npm install -g firebase-tools`.
+
+Then within the project run:
+* `firebase init`.
+
+Then the CLI will prompt:
+"**Which Firebase CLI features do you want to set up for this folder?**" Choose "**Hosting: Configure and deploy Firebase Hosting sites**."
+"**Select a default Firebase project for this directory:**" Choose the project you created on the Firebase website.
+"**What do you want to use as your public directory?**" Enter "**build**".
+"**Configure as a single-page app (rewrite all urls to /index.html)?**" Enter "**Yes**".
+"**File build/index.html already exists. Overwrite?**" Enter "**No**".
+
+Next, build an optimized version of the app by running:
+* `ionic build --prod`.
+
+and finally deply the optimized build to Firebase:
+* `firebase deploy`.
+
+After the deployment has finished successfully, the app is live.
+
+Information about how to configure the firebase deploy is available at [Progressive Web Apps in React](https://ionicframework.com/docs/react/pwa).
+
 ### Cloud Functions ###
 To set up Cloud Functions in Firebase:
 * Install Firebase Functions and Firebase Admin `npm install firebase-functions@latest firebase-admin@latest --save`
@@ -68,7 +95,7 @@ Capacitor has a number of dependencies depending on which platforms you're targe
 For building iOS apps, Capacitor requires a Mac with Xcode 11 or above. 
 
 Additionally, you'll need to install CocoaPods `(sudo gem install cocoapods)`, and install the Xcode Command Line tools (either from Xcode, or running `xcode-select --install`).
-* Install cocoapods `sudo gem install cocoapods` or update ``.
+* Install cocoapods `sudo gem install cocoapods`.
 * Run `npx cap add ios`.
 * Run `npx cap open ios`.
 
