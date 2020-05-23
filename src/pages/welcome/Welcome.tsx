@@ -33,7 +33,7 @@ const Welcome: React.FC<WelcomeProps> = ({ history, setHasSeenWelcome, setMenuEn
   const slideRef = useRef<HTMLIonSlidesElement>(null);
 
   useIonViewWillEnter(() => {
-    setMenuEnabled(true);
+    setMenuEnabled(false);
   });
 
   const startApp = async () => { 

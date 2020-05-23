@@ -12,7 +12,8 @@ import {
   IonItem,
   IonLabel,
   IonRow,
-  IonCol
+  IonCol,
+  useIonViewWillEnter
 } from '@ionic/react';
 import './Login.scss';
 import { RouteComponentProps } from 'react-router-dom';
@@ -27,12 +28,14 @@ import {
 import { connect } from '../../data/connect';
 import { getAvatar } from '../../util/getAvatar';
 import * as ROUTES from '../../constants/Routes';
+import { setMenuEnabled } from '../../data/sessions/sessions.actions';
 
 interface OwnProps extends RouteComponentProps {}
 interface DispatchProps {
   setIsLoggedIn: typeof setIsLoggedIn;
   setDisplayName: typeof setDisplayName;
   setPhotoURL: typeof setPhotoURL;
+  setMenuEnabled: typeof setMenuEnabled;
 }
 interface LoginProps extends OwnProps, DispatchProps { }
 
@@ -41,7 +44,13 @@ const Login: React.FC<LoginProps> = ({
     history,
     setDisplayName: setDisplayNameAction,
     setPhotoURL: setPhotoURLAction,
+    setMenuEnabled
   }) => {
+
+  useIonViewWillEnter(() => {
+    setMenuEnabled(true);
+  });
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [busy, setBusy] = useState(false);
@@ -114,6 +123,7 @@ export default connect<OwnProps, {}, DispatchProps>({
     setIsLoggedIn,
     setDisplayName,
     setPhotoURL,
+    setMenuEnabled
   },
   component: Login
 });
