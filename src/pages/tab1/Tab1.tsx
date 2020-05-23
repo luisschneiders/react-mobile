@@ -46,7 +46,7 @@ const Tab1: React.FC<Tab1Props> = ({ news }) => {
       <IonHeader>
         <IonToolbar>
           <IonButtons slot="start">
-            <IonMenuButton></IonMenuButton>
+            <IonMenuButton auto-hide="false"></IonMenuButton>
           </IonButtons>
           <IonTitle>Tab 1</IonTitle>
         </IonToolbar>
