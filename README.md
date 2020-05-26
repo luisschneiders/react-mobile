@@ -85,6 +85,9 @@ react-mobile
       +- node_modules/ # directory where your dependencies (declared in
                        # package.json) are installed
 ```
+To deploy only `functions` to Firebase, run:
+* `firebase deploy --only functions`
+
 
 ### Capacitor ###
 Invoke Native SDKs on iOS, Android, Electron, and the Web with one code base. Optimized for Ionic Framework apps, or use with any web app framework.
