@@ -61,7 +61,7 @@ const Account: React.FC<AccountProps> = ({
     e.preventDefault();
     setBusy(true);
 
-    const response: any = await updateProfile({ 
+    const response: any = await updateProfile({
       displayName: username ? username : displayName,
       photoURL: data?.downloadUrl ? data?.downloadUrl : photoURL });
     await delay(500);
