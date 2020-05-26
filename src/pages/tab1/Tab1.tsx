@@ -54,7 +54,7 @@ const Tab1: React.FC<Tab1Props> = ({ news }) => {
       <IonLoading message="Fetching news..." duration={0} isOpen={isLoaded}></IonLoading>
       <IonContent>
         {isError && <IonList>
-          <p className="ion-text-center">No news found! 😢</p>
+          <p className="ion-text-center">No news found! <span role="img" aria-label="sad-face">😢</span></p>
         </IonList>}
         {items && <LsGroupList data={items}></LsGroupList>}
       </IonContent>
