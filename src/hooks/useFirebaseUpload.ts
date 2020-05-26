@@ -31,7 +31,7 @@ function useFirebaseUpload(): [{
 
       try {
         let fName = `${(new Date()).getTime()}-${fileData.name}`;
-        let ref = storageRef.child("images/" + fName);
+        let ref = storageRef.child('images/avatar/' + fName);
         let uploadTask = ref.put(fileData);
 
         uploadTask.on(
