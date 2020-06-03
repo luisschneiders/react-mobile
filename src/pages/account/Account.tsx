@@ -20,7 +20,8 @@ import {
   IonCard,
   IonCardHeader,
   IonCardContent,
-  IonCardTitle
+  IonCardTitle,
+  IonImg
 } from '@ionic/react';
 import './Account.scss';
 import { updateProfile } from '../../data/api/Firebase';
@@ -31,6 +32,8 @@ import { RouteComponentProps } from 'react-router';
 import { setDisplayName, setPhotoURL } from '../../data/user/user.actions';
 import { connect } from '../../data/connect';
 import useFirebaseUpload from '../../hooks/useFirebaseUpload';
+import LsImgPlaceholder from '../../components/img/ImgPlaceholder';
+import { SIZE_64, BORDER_RADIUS_50 } from '../../constants/Img';
 
 interface OwnProps extends RouteComponentProps {}
 interface StateProps {
@@ -54,6 +57,11 @@ const Account: React.FC<AccountProps> = ({
   const [username, setUsername] = useState<string | null | undefined>();
   const [busy, setBusy] = useState(false);
   const [{ data, isError, progress }, setFileData ] = useFirebaseUpload();
+  const [isImageLoaded, setImageLoaded] = useState(false);
+
+  const onImgLoaded = () => {
+    setImageLoaded(true);
+  };
 
   const altImage: any = displayName;
 
@@ -97,7 +105,8 @@ const Account: React.FC<AccountProps> = ({
               <div className="account account__avatar">
 
                 <IonAvatar>
-                  {photoURL ? <img src={photoURL} alt={altImage} /> : data && <img src={data.downloadUrl} alt={data.metaData.name} />}
+                  {!isImageLoaded && <LsImgPlaceholder size={SIZE_64} radius={BORDER_RADIUS_50}></LsImgPlaceholder>}
+                  {photoURL ? <IonImg src={photoURL} alt={altImage} onIonImgDidLoad={onImgLoaded}/> : data && <IonImg src={data.downloadUrl} alt={data.metaData.name} onIonImgDidLoad={onImgLoaded}/>}
                 </IonAvatar>
 
                 <IonButton className="account account__fileUpload" fill="clear">
@@ -115,7 +124,7 @@ const Account: React.FC<AccountProps> = ({
                 {isError && <div>Error: {isError.message}</div>}
 
               </div>
-              
+
             </IonCardContent>
           </IonCard>
           <IonList>
