@@ -33,7 +33,7 @@ import { setDisplayName, setPhotoURL } from '../../data/user/user.actions';
 import { connect } from '../../data/connect';
 import useFirebaseUpload from '../../hooks/useFirebaseUpload';
 import LsImgPlaceholder from '../../components/img/ImgPlaceholder';
-import { SIZE_64, BORDER_RADIUS_50 } from '../../constants/Img';
+import { SIZE_64, BORDER_RADIUS_50 } from '../../constants/Images';
 
 interface OwnProps extends RouteComponentProps {}
 interface StateProps {

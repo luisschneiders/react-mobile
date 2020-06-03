@@ -9,7 +9,7 @@ import {
 import * as ROUTES from '../../constants/Routes';
 import { List } from './List';
 import LsImgPlaceholder from '../img/ImgPlaceholder';
-import { SIZE_56 } from '../../constants/Img';
+import { SIZE_56 } from '../../constants/Images';
 
 interface ContainerProps {
   list: List;
