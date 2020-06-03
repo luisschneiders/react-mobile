@@ -17,7 +17,7 @@ const Tab2: React.FC = () => {
       <IonHeader>
         <IonToolbar>
           <IonButtons slot="start">
-            <IonMenuButton auto-hide="false"></IonMenuButton>
+            <IonMenuButton auto-hide="true"></IonMenuButton>
           </IonButtons>
           <IonTitle>Tab 2</IonTitle>
         </IonToolbar>
