@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   IonHeader,
   IonToolbar,
@@ -30,8 +30,11 @@ import * as ROUTES from '../../constants/Routes';
 import * as newsSelectors from '../../data/news/news.selectors';
 import * as userSelectors from '../../data/user/user.selectors';
 import { NewsCategory } from '../../models/News';
-import { setAddNews, setRemoveNews } from '../../data/news/news.actions';
-import { addNewsFirestore } from '../../data/api/Firebase';
+import {
+  setAddNews,
+  // setRemoveNews
+} from '../../data/news/news.actions';
+// import { addNewsFirestore } from '../../data/api/Firebase';
 import { setFavouriteNews } from '../../data/user/user.actions';
 
 interface OwnProps extends RouteComponentProps {};

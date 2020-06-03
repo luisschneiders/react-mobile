@@ -9,7 +9,6 @@ import {
   IonMenuButton,
   IonList,
   IonLoading,
-  IonItem,
 } from '@ionic/react';
 import './Tab1.scss';
 import LsGroupList from '../../components/list/GroupList';

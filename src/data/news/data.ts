@@ -1,4 +1,7 @@
-import { getNews, getNewsLocal } from '../api/Finnhub';
+import {
+  getNews,
+  // getNewsLocal
+} from '../api/Finnhub';
 import { NewsType } from '../../enum/NewsType';
 import { News, NewsCategory } from '../../models/News';
 import { addNewsFirestore} from '../api/Firebase';
