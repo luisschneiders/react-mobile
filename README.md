@@ -38,10 +38,10 @@ Firebase hosting provides many benefits for Progressive Web Apps, including fast
 First, if not already available, [create the project](https://console.firebase.google.com/) in Firebase.
 
 Next, in a Terminal, install the Firebase CLI:
-* `npm install -g firebase-tools`.
+* `npm install -g firebase-tools`
 
 Then within the project run:
-* `firebase init`.
+* `firebase init`
 
 Then the CLI will prompt:
 "**Which Firebase CLI features do you want to set up for this folder?**" Choose "**Hosting: Configure and deploy Firebase Hosting sites**."
@@ -51,10 +51,10 @@ Then the CLI will prompt:
 "**File build/index.html already exists. Overwrite?**" Enter "**No**".
 
 Next, build an optimized version of the app by running:
-* `ionic build --prod`.
+* `ionic build --prod`
 
 and finally deply the optimized build to Firebase:
-* `firebase deploy`.
+* `firebase deploy --only hosting`
 
 After the deployment has finished successfully, the app is live.
 
@@ -99,8 +99,8 @@ For building iOS apps, Capacitor requires a Mac with Xcode 11 or above.
 
 Additionally, you'll need to install CocoaPods `(sudo gem install cocoapods)`, and install the Xcode Command Line tools (either from Xcode, or running `xcode-select --install`).
 * Install cocoapods `sudo gem install cocoapods`.
-* Run `npx cap add ios`.
-* Run `npx cap open ios`.
+* Run `npx cap add ios`
+* Run `npx cap open ios`
 
 #### Android Development ####
 Android development requires the Android SDK installed with Android Studio. Technically, Android Studio isn't required as you can build and run apps using only the Android CLI tools, but it will make building and running your app much easier so they strongly recommend using it.
