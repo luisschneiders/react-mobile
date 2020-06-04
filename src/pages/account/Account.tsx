@@ -21,7 +21,8 @@ import {
   IonCardHeader,
   IonCardContent,
   IonCardTitle,
-  IonImg
+  IonImg,
+  isPlatform
 } from '@ionic/react';
 import './Account.scss';
 import { updateProfile } from '../../data/api/Firebase';
@@ -33,7 +34,7 @@ import { setDisplayName, setPhotoURL } from '../../data/user/user.actions';
 import { connect } from '../../data/connect';
 import useFirebaseUpload from '../../hooks/useFirebaseUpload';
 import LsImgPlaceholder from '../../components/img/ImgPlaceholder';
-import { SIZE_64, BORDER_RADIUS_50 } from '../../constants/Images';
+import { SIZE_64, BORDER_RADIUS_50, SIZE_56, SIZE_48 } from '../../constants/Images';
 
 interface OwnProps extends RouteComponentProps {}
 interface StateProps {
@@ -58,7 +59,7 @@ const Account: React.FC<AccountProps> = ({
   const [busy, setBusy] = useState(false);
   const [{ data, isError, progress }, setFileData ] = useFirebaseUpload();
   const [isImageLoaded, setImageLoaded] = useState(false);
-
+  const ios: boolean = isPlatform('ios');
   const onImgLoaded = () => {
     setImageLoaded(true);
   };
@@ -85,7 +86,7 @@ const Account: React.FC<AccountProps> = ({
   return (
     <IonPage id="account-page">
       <IonHeader>
-      <IonToolbar>
+        <IonToolbar>
           <IonButtons slot="start">
             <IonMenuButton></IonMenuButton>
           </IonButtons>
@@ -103,9 +104,8 @@ const Account: React.FC<AccountProps> = ({
             </IonCardHeader>
             <IonCardContent>
               <div className="account account__avatar">
-
                 <IonAvatar>
-                  {!isImageLoaded && <LsImgPlaceholder size={SIZE_64} radius={BORDER_RADIUS_50}></LsImgPlaceholder>}
+                  {!isImageLoaded && <LsImgPlaceholder size={ios ? SIZE_48 : SIZE_64} radius={BORDER_RADIUS_50}></LsImgPlaceholder>}
                   {photoURL ? <IonImg src={photoURL} alt={altImage} onIonImgDidLoad={onImgLoaded}/> : data && <IonImg src={data.downloadUrl} alt={data.metaData.name} onIonImgDidLoad={onImgLoaded}/>}
                 </IonAvatar>
 
@@ -127,7 +127,7 @@ const Account: React.FC<AccountProps> = ({
 
             </IonCardContent>
           </IonCard>
-          <IonList>
+          <IonList lines="full">
             <IonItem>
               <IonLabel position="stacked" color="primary">Username</IonLabel>
               <IonInput name="username" type="text"
@@ -137,7 +137,7 @@ const Account: React.FC<AccountProps> = ({
               </IonInput>
             </IonItem>
           </IonList>
-          <IonRow>
+          <IonRow className="ion-padding-top">
             <IonCol>
               <IonButton type="submit" fill="solid" expand="block">Update</IonButton>
             </IonCol>

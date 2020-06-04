@@ -88,7 +88,7 @@ const Login: React.FC<LoginProps> = ({
           <img src="assets/img/logo1.svg" alt="Logo"/>
         </div>
         <form noValidate onSubmit={login}>
-          <IonList>
+          <IonList lines="full">
             <IonItem>
               <IonLabel position="stacked" color="primary">Email</IonLabel>
               <IonInput name="email" type="email"
@@ -104,7 +104,7 @@ const Login: React.FC<LoginProps> = ({
               </IonInput>
             </IonItem>
           </IonList>
-          <IonRow>
+          <IonRow className="ion-padding-top">
             <IonCol>
               <IonButton type="submit" fill="outline" expand="block">Login</IonButton>
             </IonCol>

@@ -82,7 +82,7 @@ const Register: React.FC<RegisterProps> = ({
           <img src="assets/img/logo2.svg" alt="Logo"/>
         </div>
         <form noValidate onSubmit={register}>
-          <IonList>
+          <IonList lines="full">
             <IonItem>
               <IonLabel position="stacked" color="primary">Email</IonLabel>
               <IonInput name="email" type="email"
@@ -106,7 +106,7 @@ const Register: React.FC<RegisterProps> = ({
             </IonItem>
           </IonList>
 
-          <IonRow>
+          <IonRow className="ion-padding-top">
             <IonCol>
               <IonButton type="submit" fill="outline" expand="block">Register</IonButton>
             </IonCol>

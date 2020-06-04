@@ -16,7 +16,7 @@ interface ContainerProps {
 const LsGroupList: React.FC<ContainerProps> = ({data}) => {
   return (
     <>
-      <IonList>
+      <IonList lines="full">
         {data.groups.map((group: any, index: number) => (
           <IonItemGroup key={`group-${index}`}>
             <IonItemDivider sticky>

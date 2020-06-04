@@ -18,10 +18,16 @@
   position: absolute;
   display: block;
 
+  &__size-48 {
+    height: 48px;
+    width: 48px;
+  }
+
   &__size-56 {
     height: 56px;
     width: 56px;
   }
+  
   &__size-64 {
     height: 64px;
     width: 64px;
