@@ -84,7 +84,7 @@ const Welcome: React.FC<WelcomeProps> = ({ history, setHasSeenWelcome, setMenuEn
           </IonSlide>
 
           <IonSlide>
-            <img src="assets/img/slide4.svg" alt="Slide4" className="slide-image" />
+            <img src="assets/img/slide2.svg" alt="Slide4" className="slide-image" />
             <h2 className="slide-title">Let's signup first!</h2>
             <IonButton fill="clear" onClick={startApp}>
               Continue
