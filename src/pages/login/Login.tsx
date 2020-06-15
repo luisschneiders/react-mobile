@@ -85,7 +85,7 @@ const Login: React.FC<LoginProps> = ({
       <IonLoading message="Please wait..." duration={0} isOpen={busy}></IonLoading>
       <IonContent className="ion-padding">
         <div className="login-logo">
-          <img src="assets/img/logo1.svg" alt="Logo"/>
+          <img src="assets/img/slide1.svg" alt="Logo"/>
         </div>
         <form noValidate onSubmit={login}>
           <IonList lines="full">
