@@ -4,7 +4,8 @@ import {
   cogOutline,
   albumsOutline,
   logOut,
-  peopleOutline
+  peopleOutline,
+  logInOutline
 } from 'ionicons/icons';
 import { AppPage } from '../models/AppPage';
 import * as ROUTES from '../constants/Routes'
@@ -22,6 +23,7 @@ export function appPages() {
     { level: 'Menu', url: ROUTES.TAB1, label: 'Tab 1 Unauth', icon: homeOutline },
     { level: 'Menu', url: ROUTES.TAB2, label: 'Tab 2 Unauth', icon: albumsOutline },
     { level: 'Menu', url: ROUTES.TAB3, label: 'Tab 3 Unauth', icon: cogOutline },
+    { level: 'Menu', url: ROUTES.LOGIN, label: 'Login', icon: logInOutline },
   ];
 
   const pages: any = Object.assign({}, {
