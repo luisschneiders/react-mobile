@@ -90,7 +90,9 @@ const Tab1Detail: React.FC<Tab1DetailProps> = ({
             <IonCardSubtitle>{news?.headline}</IonCardSubtitle>
           </IonCardHeader>
           <IonCardContent>
-            <p>{news?.summary}</p>
+            <p>
+              {news?.summary} <a target="_blank" rel="noopener noreferrer" href={news?.url}>Read more...</a>
+            </p>
             <IonItem lines="none">
               <IonButtons slot="end">
                 <IonButton onClick={() => toggleSave()}>
