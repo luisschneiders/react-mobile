@@ -19,6 +19,7 @@ export function getNews(category: string = NewsType.GENERAL, minId: number = 10)
             alt: item.headline,
             headline: item.headline,
             summary: item.summary,
+            url: item.url
           })
           customList.push(list);
         });
@@ -46,6 +47,7 @@ export function getNewsLocal(category: string = NewsType.GENERAL, minId: number 
         alt: item.headline,
         headline: item.headline,
         summary: item.summary,
+        url: item.url,
       })
       customList.push(list);
     });

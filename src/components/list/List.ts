@@ -5,4 +5,5 @@ export interface List {
   alt: string;
   headline: string;
   summary: string;
+  url: string;
 }
