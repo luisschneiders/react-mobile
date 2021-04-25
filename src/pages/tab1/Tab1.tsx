@@ -47,7 +47,7 @@ const Tab1: React.FC<Tab1Props> = ({ news }) => {
           <IonButtons slot="start">
             <IonMenuButton auto-hide="true"></IonMenuButton>
           </IonButtons>
-          <IonTitle>Tab 1</IonTitle>
+          <IonTitle>News</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonLoading message="Fetching news..." duration={0} isOpen={isLoaded}></IonLoading>
