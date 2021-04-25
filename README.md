@@ -53,7 +53,9 @@ Then the CLI will prompt:
 Next, build an optimized version of the app by running:
 * `ionic build --prod`
 
-and finally deply the optimized build to Firebase:
+Then, in the folder `build/static/`, we remove `js` and `css` files with extension `.map` because they are not necessary.
+
+Finally, we deploy the optimized build to Firebase:
 * `firebase deploy --only hosting`
 
 After the deployment has finished successfully, the app is live.
